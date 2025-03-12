@@ -1,0 +1,26 @@
+- tracer une ligne en deux droites : algo de bresenham
+- fonction pour tracer un triangle
+- fonction min
+- fonction taille map
+- fonction taille tuile (taille map, taille fenetre)
+- fonctions mouvement
+- fonction laser (+ recuperer la distance avant premier mur)
+- se renseigner sur l'algo DDA (Digital Differential Analysis)
+- comprendre les vecteurs + rotation matrix
+
+
+
+STRUCTS:
+ - vector : player position
+ - vector : direction
+ - vector : plane
+
+
+
+
+VRAC IMPORTANT :
+ - A direction vector can be seen as follows: if you draw a line in the direction the player looks,
+	through the position of the player, then every point of the line is the sum of the position
+	of the player, and a multiple of the direction vector. The length of a direction vector 
+	doesn't really matter, only its direction. 
+	Multiplying x and y by the same value changes the length but keeps the same direction.

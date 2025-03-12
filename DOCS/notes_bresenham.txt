@@ -1,0 +1,20 @@
+Besoin de delta x et y
+Besoin d'un parametre de decision
+
+
+
+EXEMPLE :
+- p1 : x= 17 y= 4
+- p2 : x= 4 y= 9
+
+delta x = p1.x - p2.x = 13
+delta y = p1.y - p2.y = -5
+ 
+init D :
+D = 2dy - dx = 2 * (-5) - 13 = -23
+
+- si D < 0 :
+	D = D + 2dy
+- sinon : 
+	D = D + 2dy - 2dx
+	y = y + 1 

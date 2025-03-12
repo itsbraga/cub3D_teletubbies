@@ -1,0 +1,13 @@
+## SEPARATING AXES THEOREM ## 
+In our case polygon to test aren't aligned with x/y axes
+in our case we deal with convex polygon
+
+REVIEW ON VECTORS
+- un vecteur est un ensemble de valeurs qui representent des coordonnes dans l'espace vectoriel defini par le vecteur lui meme
+- par exemple un vecteur v(2,4) est un vecteur qui evolue sur un espace en deux dimensions
+- en programmation un vecteur est un tableau qui va contenir x valeur
+- un vecteur n'a pas de position dans le repere cartesien, il est une direction
+- un vecteur a une longueur, une magnitude, et qui peut etre determiner par le theoreme de pythagore (c2 = a2 + b2)
+- pour determiner un vecteur on prend la destination et la soustrait a l'origine, donc pour 2 point a(2,2) et b(7,5) notre vecteur est V(5,3)
+NOTION : dot product ou produit scalaire (entre deux vecteurs a et b par exemple)
+- est defini par a . b = ||a|| * ||b|| * cos(angle entre les deux)
