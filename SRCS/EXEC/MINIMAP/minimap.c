@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:51:29 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/12 21:06:39 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/13 03:21:34 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,6 @@ static void	__draw_minimap(t_game *game, t_minimap *minimap, t_map *map)
 {
 	t_point	tile;
 	
-	minimap->pos.x = WIN_WIDTH - minimap->img.width - 20;
-	minimap->pos.y = WIN_HEIGHT - minimap->img.height - 20;
 	clear_img(&minimap->img, minimap->img.width, minimap->img.height,
 		GRAY_PIX);
 	tile.y = 0;
@@ -63,7 +61,6 @@ void	render_minimap(t_game *game, t_minimap *minimap)
 	init_minimap_img(game->mlx, minimap);
 	__draw_minimap(game, minimap, data_s()->map);
 	mlx_put_image_to_window(game->mlx->mlx_ptr, game->mlx->win_ptr,
-		minimap->img.img_ptr,
-		minimap->pos.x, minimap->pos.y);
+		minimap->img.img_ptr, minimap->pos.x, minimap->pos.y);
 	mlx_destroy_image(game->mlx->mlx_ptr, minimap->img.img_ptr);
 }

@@ -6,49 +6,60 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:42:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/12 18:57:53 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/13 01:54:26 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-// AJOUTER MALLOCS A YAMA?
+// AJOUTER MALLOC A YAMA?
+static char	*__normalize_line(char *line, size_t width)
+{
+	char	*normed_line;
+	size_t	line_len;
+	size_t	j;
+	
+	normed_line = malloc(width + 1);
+	secure_malloc(normed_line, true);
+	line_len = ft_strlen(line) - 1;
+	j = 0;
+	while (j < width)
+	{
+		if (j < line_len)
+		{
+			if (line[j] == ' ')
+				normed_line[j] = '1';
+			else
+				normed_line[j] = line[j];
+		}
+		else
+			normed_line[j] = '1';
+		j++;
+	}
+	normed_line[width] = '\0';
+	return (normed_line);
+}
+
+// AJOUTER MALLOC A YAMA?
 char	**normalize_map2d(char **map, size_t height, size_t width)
 {
 	char	**normed;
 	size_t	i;
-	size_t	j;
-	size_t	line_len;
+
 
 	normed = malloc(sizeof(char *) * (height + 1));
 	secure_malloc(normed, true);
 	i = 0;
 	while (i < height)
 	{
-		normed[i] = malloc(width + 1);
-		secure_malloc(normed[i], true);
-		line_len = ft_strlen(map[i]);
-		j = 0;
-		while (j < width)
-		{
-			if (j < line_len)
-			{
-				if (map[i][j] == ' ')
-					normed[i][j] = '1';
-				else
-					normed[i][j] = map[i][j];
-			}
-			else
-				normed[i][j] = '1';
-			j++;
-		}
-		normed[i][width] = '\0';
+		normed[i] = __normalize_line(map[i], width);
 		i++;
 	}
 	normed[height] = NULL;
 	return (normed);
 }
 
+// AJOUTER MALLOC A YAMA?
 void	fill_map2d_array(t_map *map, char *line)
 {
 	char	**tmp;

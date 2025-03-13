@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 23:09:28 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/12 22:31:30 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/13 03:26:51 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,11 +33,11 @@ int	render(t_game *game)
 		get_textures(data);
 		clear_img(&game->mlx->img, WIN_WIDTH, WIN_HEIGHT, BLACK_PIX);
 		raycasting(data, game->player, game->ray);
-		// printf("player pos.x = %f | player pos.y = %f\n", game->player->pos.x, game->player->pos.y);
 		mlx_put_image_to_window(game->mlx->mlx_ptr, game->mlx->win_ptr,
 			game->mlx->img.img_ptr, 0, 0);
-		// if (BONUS)
+		if (BONUS)
 			render_minimap(game, game->minimap);
+		// 	render_minimap_v2(game, game->minimap);
 	}
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/12 21:42:23 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/13 03:31:56 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,8 +128,21 @@ typedef struct s_data
 	unsigned int	feature_filled;
 }				t_data;
 
+typedef struct s_viewport
+{
+	int		start_tile_x;
+	int		start_tile_y;
+	int		end_tile_x;
+	int		end_tile_y;
+	int		width_tiles;
+	int		height_tiles;
+	int		pixel_width;
+	int		pixel_height;
+}				t_viewport;
+
 typedef struct s_minimap
 {
+	t_viewport	vp;
 	t_img		img;
 	t_point		pos;
 	size_t		tile_size;
@@ -144,7 +157,6 @@ typedef struct s_game
 	t_keys			*keys;
 	t_minimap		*minimap;
 	t_mlx			*mlx;
-	// t_data			*data;
 }				t_game;
 
 #endif

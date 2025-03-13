@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:43:21 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/12 18:57:53 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/13 02:06:15 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,5 +42,8 @@ void	get_player_direction(t_map *map, t_player *player)
 		return (err_msg(NULL, ERR_PLAYER), clean_exit(FAILURE));
 	if (player_count > 1)
 		return (err_msg(NULL, ERR_NB_PLAYER), clean_exit(FAILURE));
+	player->pos.x = player->pos.x * TILE_SIZE;
+	player->pos.y = player->pos.y * TILE_SIZE;
+	game_s()->player = player;
 }
 // check aussi si la position donnee est valide

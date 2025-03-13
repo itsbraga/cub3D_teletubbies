@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 15:20:42 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/12 18:57:53 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/13 03:35:36 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ size_t	get_longest_line(char **map2d, size_t height)
 	len = 0;
 	while (i < height)
 	{
-		len = ft_strlen(map2d[i]);
+		len = ft_strlen(map2d[i]) - 1;
 		if (len > max)
 			max = len;
 		i++;

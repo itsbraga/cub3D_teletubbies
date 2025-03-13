@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/12 22:31:16 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/13 03:30:05 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,6 @@ void	init_map2(t_map *map, char *path_to_file, int fd, t_data *data)
 	map->height = 0;
 	map->width = 0;
 	data->map = map;
-}
-
-void	init_player(t_player *player, t_game *game)
-{
-	player->dir = N;
-	player->pos.x = 800;
-	player->pos.y = 700;
-	player->move.x = 0;
-	player->move.y = 0;
-	game->player = player;
 }
 
 void	init_raycasting(t_raycasting *r, t_game *game)
@@ -56,16 +46,11 @@ void	init_keys(t_keys *keys, t_game *game)
 
 void	init_minimap(t_minimap *mini, t_game *game)
 {
-	mini->img.img_ptr = NULL;
-	mini->img.addr = NULL;
-	mini->img.bits_per_pixel = 0;
-	mini->img.size_line = 0;
-	mini->img.endian = 0;
-	mini->img.width = 0;
-	mini->img.height = 0;
+	ft_bzero(&mini->vp, sizeof(t_viewport));
+	ft_bzero(&mini->img, sizeof(t_img));
 	mini->pos.x = 0;
 	mini->pos.y = 0;
-	mini->tile_size = 0;
+	mini->tile_size = 16;
 	game->minimap = mini;
 }
 
@@ -75,6 +60,16 @@ void	init_map(t_map *map, t_data *data)
 	map->height = 0;
 	map->width = 0; 
 	data->map = map;
+}
+
+void	init_player(t_player *player, t_game *game)
+{
+	player->dir = N;
+	player->pos.x = 800;
+	player->pos.y = 700;
+	player->move.x = 0;
+	player->move.y = 0;
+	game->player = player;
 }
 
 void	init_structs(t_data *data, t_game *game, t_mlx *mlx)

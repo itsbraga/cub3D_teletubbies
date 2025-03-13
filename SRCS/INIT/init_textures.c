@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 18:02:38 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/12 17:11:09 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/13 01:06:04 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	fill_textures_paths(char *line, t_textures *tex)
 		tex->east = __get_texture_path(line);
 		printf(BOLD PB "EAST: " RESET "[%s]\n", tex->east);
 	}
-	else
-		return ;
+	// a regler selon la disposition des textures
+	if (check_textures_paths(tex) == FAILURE)
+		clean_exit(FAILURE);
 }

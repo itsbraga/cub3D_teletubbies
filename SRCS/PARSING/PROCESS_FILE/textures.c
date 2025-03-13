@@ -15,8 +15,6 @@
 void	process_texture_lines(char *line, t_textures *tex)
 {
 	fill_textures_paths(line, tex);
-	if (check_textures_paths(tex) == FAILURE)
-		clean_exit(FAILURE);
 	if (ft_strncmp(line, "NO", 2) == 0)
 	{
 		tex->imgs[NO] = xpm_to_mlx_img(tex->north);

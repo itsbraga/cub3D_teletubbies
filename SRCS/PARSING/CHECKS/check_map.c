@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 21:14:14 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/12 18:57:53 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/13 03:14:22 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	is_map_line(char *line)
 	i = 0;
 	while (line[i] != '\0')
 	{
-		if (line[i] != '\n' && ft_strchr(MAP_CHARS, line[i]) == NULL)
+		if (line[i] != '\n' && ft_strchr(VALID_MAP_CHARS, line[i]) == NULL)
 		{
 			err_msg_quoted(&line[i], ERR_CHAR);
 			return (false);

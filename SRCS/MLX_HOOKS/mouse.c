@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 19:44:33 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/12 21:27:49 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/13 03:35:03 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,6 @@ static int	__title_screen_mouse(int button, int x, int y, t_game *game)
 void	set_mouse_hooks(t_mlx *mlx, t_game *game)
 {
 	mlx_hook(mlx->win_ptr, MotionNotify, PointerMotionMask, &__mouse_motion,
-			game);
+		game);
 	mlx_mouse_hook(mlx->win_ptr, &__title_screen_mouse, game);
 }

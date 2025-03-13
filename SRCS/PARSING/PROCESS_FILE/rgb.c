@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 20:57:10 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/12 18:57:53 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/13 01:05:26 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,20 @@ void	process_color_lines(char *line, t_data *data)
 	if (line[0] == 'F')
 	{
 		rgb_array = __rgb_to_convert(line, rgb_array);
-		// printf(BOLD PINK "RGB floor: %s %s %s" RESET, rgb_array[0], rgb_array[1], rgb_array[2]);
+		printf(BOLD CYAN "RGB floor: %s %s %s" RESET, rgb_array[0], rgb_array[1], rgb_array[2]);
 		data->floor_color = convert_rgb_into_uint(rgb_array[0],
 				rgb_array[1], rgb_array[2]);
-		// printf(BOLD PINK "data->floor_color: %u\n" RESET, data->floor_color);
+		printf(BOLD CYAN "data->floor_color: %u\n" RESET, data->floor_color);
 		data->feature_filled++;
 		// printf(BOLD ORANGE "data->feature_filled: %u\n\n" RESET, data->feature_filled);
 	}
 	else
 	{
 		rgb_array = __rgb_to_convert(line, rgb_array);
-		// printf(BOLD PINK "RGB ceiling: %s %s %s" RESET, rgb_array[0], rgb_array[1], rgb_array[2]);
+		printf(BOLD BLUE "RGB ceiling: %s %s %s" RESET, rgb_array[0], rgb_array[1], rgb_array[2]);
 		data->ceiling_color = convert_rgb_into_uint(rgb_array[0],
 				rgb_array[1], rgb_array[2]);
-		// printf(BOLD PINK "data->ceiling_color: %u\n" RESET, data->ceiling_color);
+		printf(BOLD BLUE "data->ceiling_color: %u\n" RESET, data->ceiling_color);
 		// if (data->ceiling_color == 0)
 		data->feature_filled++;
 		// printf(BOLD ORANGE "data->feature_filled: %u\n\n" RESET, data->feature_filled);

@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/12 21:49:41 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/13 03:14:15 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@
 #  define BONUS 1
 # endif
 
-/******************************************************************************\
+/**************************\
  * MATHS
-\******************************************************************************/
+\**************************/
 
 # define PI 3.1415926535
 # define PI2 (PI / 2)
@@ -30,9 +30,9 @@
 # define PROJ_DISTANCE ((WIN_WIDTH / 2) / tan(degree_to_radian(FOV) / 2))
 # define MOVE_SPEED 5
 
-/******************************************************************************\
- * GARBAGE COLLECTOR FLAGS (Yama)
-\******************************************************************************/
+/**************************\
+ * YAMA FLAGS
+\**************************/
 
 # define CREATE 0
 # define CREATE_ARRAY 1
@@ -43,16 +43,16 @@
 # define SEARCH -4
 # define INVALID_FLAG "This flag does not exist"
 
-/******************************************************************************\
+/**************************\
  * EXIT STATUS
-\******************************************************************************/
+\**************************/
 
 # define SUCCESS 0
 # define FAILURE 1
 
-/******************************************************************************\
+/**************************\
  * ERROR
-\******************************************************************************/
+\**************************/
 
 # define ERR "\033[1m\033[31mError\n\033[0m"
 # define ERR_PREFIX "\033[1m\033[31mError: \033[0m"
@@ -85,9 +85,9 @@
 # define ERR_BG_IMG "Cannot load background image"
 # define ERR_BUTTON_IMG "Cannot load button image"
 
-/******************************************************************************\
+/**************************\
  * MLX
-\******************************************************************************/
+\**************************/
 
 # define W_NAME "TeleCubbies3D - by @itsbraga and @k0xdama"
 # define WIN_WIDTH 1024 // 1280
@@ -96,9 +96,11 @@
 # define DEL_IMG "[minilibX] Image and window destroyed\n"
 # define MLX_EXIT "[minilibX] All elements have been destroyed\n"
 
-/************************\
+# define VALID_MAP_CHARS "01 NSEW"
+
+/**************************\
  * PLAYER MOVEMENTS
-\************************/
+\**************************/
 
 // Array of pointers to functions
 typedef void	(*move_array)(t_game *game);
@@ -121,12 +123,6 @@ typedef void	(*move_array)(t_game *game);
 # define MOUSE_SENSITIVITY_X 0.1f
 # define MOUSE_SENSITIVITY_Y 0.05f
 # define MAX_PITCH 45 // designe le max d'inclinaison verticale de la camera
-
-/******************************************************************************\
- * MAP SETUP
-\******************************************************************************/
-
-# define MAP_CHARS "01 NSEW"
 
 /**************************\
  * PLAYER'S DIRECTION

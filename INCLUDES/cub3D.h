@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/12 22:18:13 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/13 03:37:05 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define CUB3D_H
 
 /**********************\
- *		LIBRARIES
+ *	LIBRARIES
 \**********************/
 
 # include <unistd.h>
@@ -37,7 +37,7 @@
 # include "colors.h"
 
 /**********************\
- *		 PARSING
+ *	PARSING
 \**********************/
 
 // utils.c
@@ -74,10 +74,10 @@ void			fill_map2d_array(t_map *map, char *line);
 void			get_file_data(int fd, t_data *data);
 
 // parsing.c
-short			parsing(char *arg, t_map *map);
+short			parsing(char *arg, t_data *data, t_game *game);
 
 /**********************\
- *		  TOOLS
+ *	TOOLS
 \**********************/
 
 // err_msg.c
@@ -113,7 +113,7 @@ void		free_mlx(t_mlx *mlx);
 void		clean_exit(int exit_code);
 
 /**********************\
- *		 GARBAGE
+ *	GARBAGE
 \**********************/
  
 // lst_utils.c
@@ -130,7 +130,7 @@ int			free_gc_array(t_gc_lst **y, char **array);
 void		*yama(int flag, void *ptr, size_t size);
 
 /**********************\
- *		  INIT
+ *	INIT
 \**********************/
 
 // TITLE_SCREEN/layers.c
@@ -162,7 +162,7 @@ void		init_map2(t_map *map, char *path_to_file, int fd, t_data *data);
 void		init_structs(t_data *data, t_game *game, t_mlx *mlx);
 
 /**********************\
- *		MLX_HOOKS
+ *	MLX_HOOKS
 \**********************/
 
 // movements.c
@@ -186,7 +186,7 @@ void		set_mouse_hooks(t_mlx *mlx, t_game *game);
 void		set_hooks(t_mlx *mlx, t_game *game);
 
 /**********************\
- *		  EXEC
+ *	EXEC
 \**********************/
 
 // map_info.c
@@ -222,5 +222,19 @@ int			init_minimap_img(t_mlx *mlx, t_minimap *minimap);
 
 // MINIMAP/minimap.c
 void		render_minimap(t_game *game, t_minimap *minimap);
+
+// MINIMAP/NEW/viewport.c
+t_viewport	compute_viewport(t_game *game, t_map *map, int view_half,
+	size_t tile_size);
+void		draw_viewport_walls(t_minimap *minimap, t_map *map);
+void		draw_player_in_viewport(t_game *game, t_minimap *minimap);
+
+// MINIMAP/NEW/init_minimap_v2.c
+int			init_minimap_img_v2(t_mlx *mlx, t_minimap *minimap);
+
+// MINIMAP/NEW/minimap_v2.c
+void		draw_minimap_tile(t_minimap *minimap, t_point tile);
+void		draw_miniplayer(t_minimap *minimap, t_point *relative);
+void		render_minimap_v2(t_game *game, t_minimap *minimap);
 
 #endif
