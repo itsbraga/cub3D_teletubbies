@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/13 03:30:05 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/14 20:16:29 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,12 @@ void	init_raycasting(t_raycasting *r, t_game *game)
 	r->h_ray_inter.y = 0;
 	r->v_ray_inter.x = 0;
 	r->v_ray_inter.y = 0;
+	r->curr_ray = 0;
+	r->dist_wall = 0;
+	r->tex_x = 0;
+	r->vertical_hit = 0;
 	game->ray = r;
+	//remplacer les champs initialises a 0 par bzero(sizeofstruct) ?
 }
 
 void	init_keys(t_keys *keys, t_game *game)

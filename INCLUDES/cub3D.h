@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/13 03:37:05 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/14 20:27:21 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,7 +206,7 @@ t_img		xpm_to_mlx_img(char *relative_path);
 void		draw_line(t_img *img, t_point p0, t_point p1, int color);
 
 // RENDER/draw_texture.c
-void		draw_vline_texture(int x, int start_y, int end_y, int *tex_buffer);
+void	draw_vline_texture(int start_y, int end_y, int *tex_buffer, t_raycasting *r);
 
 // RENDER/raycasting.c
 void		raycasting(t_data *d, t_player *player, t_raycasting *r);
