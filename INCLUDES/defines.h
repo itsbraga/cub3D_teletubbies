@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/15 20:41:16 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/15 22:57:02 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,8 +129,8 @@ typedef void	(*move_array)(t_game *game);
 \**************************/
 
 # define PLAYER_DIR "NSEW"
-# define N 90
-# define S 270
+# define N 270
+# define S 90
 # define E 0
 # define W 180
 

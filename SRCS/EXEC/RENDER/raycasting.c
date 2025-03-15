@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/15 20:17:04 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/15 22:57:27 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,9 +191,9 @@ void	handle_tex_buffer(int *tex_buffer, float ray_rad, t_raycasting *r)
 	{
 		printf("vertical hit = %d\n", r->vertical_hit);
 		if (ray_rad > 0 && ray_rad < PI)
-			load_tex_buffer(NO, tex_buffer);
-		else if (ray_rad > PI2 && ray_rad < (2 * PI))
 			load_tex_buffer(SO, tex_buffer);
+		else if (ray_rad > PI2 && ray_rad < (2 * PI))
+			load_tex_buffer(NO, tex_buffer);
 	}
 	else if (r->vertical_hit == true)
 	{
