@@ -72,7 +72,7 @@ $(LIBFT) $(MLX):
 $(NAME): $(OBJS_F) $(LIBFT) $(MLX)
 		@echo "\n\n$(BOLD)=================== $(shell bash rainbow.sh "cub3D") $(BOLD)===================\n"
 		@echo "$(BLINK)$(GREEN)\t\t    READY!$(RESET)\n"
-		@echo "$(BOLD)=============================================\n\n"
+		@echo "$(BOLD)=============================================$(RESET)\n\n"
 		@cc $(CFLAGS) -DBONUS=$(BONUS) $(HEADERS) $(OBJS_F) $(LIBFLAGS) -o $(NAME)
 
 bonus:

@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/15 18:05:17 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/15 20:41:27 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,14 @@ typedef struct s_map
 	size_t		height;
 	size_t		width;
 }				t_map;
+
+typedef struct s_triangle
+{
+	t_point		a;
+	t_point		b;
+	t_point		c;
+	float		theta;
+}				t_triangle;
 
 typedef struct s_player
 {

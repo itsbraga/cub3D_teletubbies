@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/14 20:16:29 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/15 17:14:18 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,10 @@ void	init_map2(t_map *map, char *path_to_file, int fd, t_data *data)
 
 void	init_raycasting(t_raycasting *r, t_game *game)
 {
+	ft_bzero(r, sizeof(t_raycasting));
 	r->fov = 45;
 	r->player_rad = degree_to_radian(game->player->dir);
-	r->h_offset.x = 0;
-	r->h_offset.y = 0;
-	r->v_offset.x = 0;
-	r->v_offset.y = 0;
-	r->h_ray_inter.x = 0;
-	r->h_ray_inter.y = 0;
-	r->v_ray_inter.x = 0;
-	r->v_ray_inter.y = 0;
-	r->curr_ray = 0;
-	r->dist_wall = 0;
-	r->tex_x = 0;
-	r->vertical_hit = 0;
 	game->ray = r;
-	//remplacer les champs initialises a 0 par bzero(sizeofstruct) ?
 }
 
 void	init_keys(t_keys *keys, t_game *game)

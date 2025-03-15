@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   viewport.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/13 02:36:56 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/13 03:11:42 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/15 20:16:48 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,5 +82,5 @@ void	draw_player_in_viewport(t_game *game, t_minimap *minimap)
 	player_tile_pos.y = game->player->pos.y / TILE_SIZE;
 	player_view.x = (player_tile_pos.x - vp->start_tile_x) * minimap->tile_size;
 	player_view.y = (player_tile_pos.y - vp->start_tile_y) * minimap->tile_size;
-	draw_miniplayer(minimap, &player_view);
+	draw_player(game, minimap, game->player);
 }

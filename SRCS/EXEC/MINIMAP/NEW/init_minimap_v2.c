@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_minimap_v2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 18:59:14 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/13 03:22:02 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/15 20:15:14 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int	init_minimap_img_v2(t_mlx *mlx, t_minimap *minimap)
 		&minimap->img.endian);
 	if (minimap->img.addr == NULL)
 	{
-		(del_img(mlx, minimap->img.img_ptr), free_mlx(mlx)); // peut-etre supprimer les deux images (minimap + mlx)
+		del_img(mlx, minimap->img.img_ptr);
+		free_mlx(mlx); // peut-etre supprimer les deux images (minimap + mlx)
 		return (err_msg("minilibX", ERR_ADDR), FAILURE);
 	}
 	minimap->img.width = m_width;

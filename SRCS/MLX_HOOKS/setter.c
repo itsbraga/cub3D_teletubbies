@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:20:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/12 21:52:06 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/15 18:05:07 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,6 @@ void	set_hooks(t_mlx *mlx, t_game *game)
 	mlx_hook(mlx->win_ptr, DestroyNotify, StructureNotifyMask, &exit_game, mlx);
 	mlx_hook(mlx->win_ptr, KeyPress, KeyPressMask, &__set_keypress, game);
 	mlx_hook(mlx->win_ptr, KeyRelease, KeyReleaseMask, &__set_keyrelease, game);
-	// if (BONUS)
-	// 	set_mouse_hooks(mlx, game);
+	if (BONUS)
+		set_mouse_hooks(mlx, game);
 }

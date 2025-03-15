@@ -98,21 +98,27 @@ static void	__fill_triangle(t_game *g, t_point p1, t_point p2, t_point p3, int c
 
 void	draw_player(t_game *game, t_minimap *minimap, t_player *player)
 {
-	t_point a;
-	t_point b;
-	t_point c;
-	int		L = 40; //  augmenter si map tres petite, voir n (window / n)
-	double	h = 1.3 * L;
-	float	theta = degree_to_radian(player->dir);
-	
-	a.x = (player->pos.x + cos(theta) * h) / 4;
-	a.y = (player->pos.y + sin(theta) * h) / 4;
-	b.x = (player->pos.x + cos(theta + (PI / 2)) * (L / 2)) / 4;
-	b.y = (player->pos.y + sin(theta + (PI / 2)) * (L / 2)) / 4;
-	c.x = (player->pos.x + cos(theta - (PI / 2)) * (L / 2)) / 4;
-	c.y = (player->pos.y + sin(theta - (PI / 2)) * (L / 2)) / 4;
-    draw_line(&minimap->img, a, b, RED_PIX);
-	draw_line(&minimap->img, b, c, RED_PIX);
-	draw_line(&minimap->img, c, a, RED_PIX);
-	__fill_triangle(game, a, b, c, RED_PIX);
+	int			L;
+	double		h;
+	float		offset_dist;
+	t_triangle	iso;
+	t_point		new_pos;
+
+	L = 40; //  augmenter si map tres petite, voir n (window / n)
+	h = 1.3 * L;
+	offset_dist = L / 2;
+	ft_memset(&iso, 0, sizeof(t_triangle));
+	iso.theta = degree_to_radian(player->dir);
+	new_pos.x = player->pos.x - cos(iso.theta) * offset_dist;
+	new_pos.y = player->pos.y - sin(iso.theta) * offset_dist;
+	iso.a.x = (new_pos.x + cos(iso.theta) * h) / 4;
+	iso.a.y = (new_pos.y + sin(iso.theta) * h) / 4;
+	iso.b.x = (new_pos.x + cos(iso.theta + (PI / 2)) * offset_dist) / 4;
+	iso.b.y = (new_pos.y + sin(iso.theta + (PI / 2)) * offset_dist) / 4;
+	iso.c.x = (new_pos.x + cos(iso.theta - (PI / 2)) * offset_dist) / 4;
+	iso.c.y = (new_pos.y + sin(iso.theta - (PI / 2)) * offset_dist) / 4;
+    draw_line(&minimap->img, iso.a, iso.b, RED_PIX);
+	draw_line(&minimap->img, iso.b, iso.c, RED_PIX);
+	draw_line(&minimap->img, iso.c, iso.a, RED_PIX);
+	__fill_triangle(game, iso.a, iso.b, iso.c, RED_PIX);
 }
