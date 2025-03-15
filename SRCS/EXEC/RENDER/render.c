@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 23:09:28 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/13 03:26:51 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/15 20:13:30 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ int	render(t_game *game)
 		mlx_put_image_to_window(game->mlx->mlx_ptr, game->mlx->win_ptr,
 			game->mlx->img.img_ptr, 0, 0);
 		if (BONUS)
-			render_minimap(game, game->minimap);
-		// 	render_minimap_v2(game, game->minimap);
+			// render_minimap(game, game->minimap);
+			render_minimap_v2(game, game->minimap);
 	}
 	return (SUCCESS);
 }
