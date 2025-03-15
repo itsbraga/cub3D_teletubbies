@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/14 20:27:21 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/16 00:40:01 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -177,7 +177,7 @@ void		rotate_rightward(t_game *game);
 
 // move_array.c
 void		move_player(t_game *game, t_keys *key);
-void		reset_var(t_player *player);
+void		reset_move(t_player *player);
 
 // mouse.c
 void		set_mouse_hooks(t_mlx *mlx, t_game *game);

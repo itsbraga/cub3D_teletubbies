@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 23:09:28 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/15 20:42:19 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/16 00:42:49 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ int	render(t_game *game)
 	else if (game->state == GAME)
 	{
 		get_map_info(data->map);
+		(move_player(game, game->keys), reset_move(game->player));
 		get_textures(data);
 		clear_img(&game->mlx->img, WIN_WIDTH, WIN_HEIGHT, BLACK_PIX);
 		raycasting(data, game->player, game->ray);

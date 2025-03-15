@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/15 22:57:27 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/15 23:01:44 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,7 @@ void	inter_hline(t_data *d, t_player *player, t_raycasting *r, float ray_rad)
 		curr_tile.y = r->h_ray_inter.y / TILE_SIZE;
 		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->width
 			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->height)
-		{
-			printf(BOLD RED "Out of bounds hline: curr_tile.x = %d, curr_tile.y = %d\n" RESET, (int)curr_tile.x, (int)curr_tile.y);
 			break;
-		}
 		else if (d->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '1')
 		{
 			// printf("HIT A WALL !\n");
@@ -108,10 +105,7 @@ void	inter_vline(t_data *d, t_player *player, t_raycasting *r, float ray_rad)
 		curr_tile.y = r->v_ray_inter.y / TILE_SIZE;
 		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->width
 			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->height)
-		{
-			printf(BOLD RED "Out of bounds vline: curr_tile.x = %d, curr_tile.y = %d\n" RESET, (int)curr_tile.x, (int)curr_tile.y);
 			break;
-		}
 		else if (d->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '1')
 		{
 			// printf("HIT A WALL\n");
@@ -181,7 +175,6 @@ void	load_tex_buffer(int orientation, int *tex_buffer)
 		x = 0;
 		y++;
 	}
-	printf("orientation = %d\n", orientation);
 }
 
 void	handle_tex_buffer(int *tex_buffer, float ray_rad, t_raycasting *r)
@@ -189,7 +182,6 @@ void	handle_tex_buffer(int *tex_buffer, float ray_rad, t_raycasting *r)
 	ft_bzero(tex_buffer, TILE_SIZE * TILE_SIZE);
 	if (r->vertical_hit == false)
 	{
-		printf("vertical hit = %d\n", r->vertical_hit);
 		if (ray_rad > 0 && ray_rad < PI)
 			load_tex_buffer(SO, tex_buffer);
 		else if (ray_rad > PI2 && ray_rad < (2 * PI))

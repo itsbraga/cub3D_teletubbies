@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 21:01:29 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/13 00:43:01 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/16 00:39:49 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	move_player(t_game *game, t_keys *key)
 		__bonus_player_moves(data_s(), game);
 }
 
-void	reset_var(t_player *player)
+void	reset_move(t_player *player)
 {
 	player->move.x = 0;
 	player->move.y = 0;

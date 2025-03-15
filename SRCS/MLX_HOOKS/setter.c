@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:20:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/15 18:05:07 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/16 00:39:00 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ static int	__set_keypress(int keycode, t_game *game)
 		game->keys->key_array[_LEFT] = 1;
 	if (keycode == XK_Right)
 		game->keys->key_array[_RIGHT] = 1;
-	(move_player(game, game->keys), reset_var(game->player));
 	return (SUCCESS);
 }
 
