@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/15 00:15:10 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/15 20:17:04 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	inter_hline(t_data *d, t_player *player, t_raycasting *r, float ray_rad)
 		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->width
 			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->height)
 		{
-			printf(BOLD RED "Out of bounds: curr_tile.x = %d, curr_tile.y = %d\n" RESET, (int)curr_tile.x, (int)curr_tile.y);
+			printf(BOLD RED "Out of bounds hline: curr_tile.x = %d, curr_tile.y = %d\n" RESET, (int)curr_tile.x, (int)curr_tile.y);
 			break;
 		}
 		else if (d->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '1')
@@ -109,7 +109,7 @@ void	inter_vline(t_data *d, t_player *player, t_raycasting *r, float ray_rad)
 		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->width
 			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->height)
 		{
-			printf(BOLD RED "Out of bounds: curr_tile.x = %d, curr_tile.y = %d\n" RESET, (int)curr_tile.x, (int)curr_tile.y);
+			printf(BOLD RED "Out of bounds vline: curr_tile.x = %d, curr_tile.y = %d\n" RESET, (int)curr_tile.x, (int)curr_tile.y);
 			break;
 		}
 		else if (d->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '1')
@@ -147,6 +147,7 @@ void	find_closest_inter(t_player *player, t_raycasting *r, t_point *closest_inte
 		closest_inter->y = r->h_ray_inter.y;
 		r->dist_wall = sqrt(dist_h);
 		r->tex_x = (int)closest_inter->x & (TILE_SIZE - 1);
+		r->vertical_hit = false;
 	}
 	else
 	{
@@ -154,6 +155,7 @@ void	find_closest_inter(t_player *player, t_raycasting *r, t_point *closest_inte
 		closest_inter->y = r->v_ray_inter.y;
 		r->dist_wall = sqrt(dist_v);
 		r->tex_x = (int)closest_inter->y & (TILE_SIZE - 1);
+		r->vertical_hit = true;
 	}
 }
 
@@ -179,6 +181,7 @@ void	load_tex_buffer(int orientation, int *tex_buffer)
 		x = 0;
 		y++;
 	}
+	printf("orientation = %d\n", orientation);
 }
 
 void	handle_tex_buffer(int *tex_buffer, float ray_rad, t_raycasting *r)
@@ -186,7 +189,8 @@ void	handle_tex_buffer(int *tex_buffer, float ray_rad, t_raycasting *r)
 	ft_bzero(tex_buffer, TILE_SIZE * TILE_SIZE);
 	if (r->vertical_hit == false)
 	{
-		if (ray_rad > 0 && ray_rad < PI2)
+		printf("vertical hit = %d\n", r->vertical_hit);
+		if (ray_rad > 0 && ray_rad < PI)
 			load_tex_buffer(NO, tex_buffer);
 		else if (ray_rad > PI2 && ray_rad < (2 * PI))
 			load_tex_buffer(SO, tex_buffer);
@@ -200,20 +204,25 @@ void	handle_tex_buffer(int *tex_buffer, float ray_rad, t_raycasting *r)
 	}
 }
 
+
 // void	fix_distorsion(unsigned	int curr_x, t_raycasting *r)
 // {
 // 	float	dist_wall_factor;
-// 	float	center_offset;
-// 	float	adj_factor;
-// 	float	center_value;
-// 	int		tmp;
+// 	float	ray_pos_factor;
+// 	float	center_tex;
+// 	float	blend_f;
+// 	int		original_tex_x;
 
-// 	dist_wall_factor = fmin(1.0f, r->dist_wall / TILE_SIZE);
-// 	adj_factor = fabsf((float)curr_x - (WIN_WIDTH / 2)) /  
-
-// 	if (r->vertical_hit == true)
+// 	dist_wall_factor = r->dist_wall / (TILE_SIZE * 0.5f);
+// 	ray_pos_factor = fabsf((float)curr_x - (WIN_WIDTH / 2)) / (WIN_WIDTH / 2);
+// 	center_tex = TILE_SIZE / 2.0f;
+// 	blend_f = 0.0f;
+// 	original_tex_x = r->tex_x;
+// 	if (ray_pos_factor > 0.5f)
 // 	{
-		
+// 		blend_f = (ray_pos_factor - 0.5f) * 2.0f * (1.0f - dist_wall_factor);
+// 		r->tex_x = (int)(original_tex_x * (1.0f - blend_f) + center_tex * blend_f);
+// 		r->tex_x = r->tex_x & (TILE_SIZE - 1);
 // 	}
 // }
 
@@ -229,12 +238,15 @@ void	draw_wall(float ray_rad, t_raycasting *r)
 	fixed_angle = norm_rad_angle(fixed_angle);
 	r->dist_wall = r->dist_wall * cos(fixed_angle);
 	wall_h = (TILE_SIZE * WIN_HEIGHT) / r->dist_wall;
+	r->step_tex_y = TILE_SIZE / wall_h;
+	r->off_tex_y = 0;
 	if (wall_h > WIN_HEIGHT)
+	{
+		r->off_tex_y = (wall_h - WIN_HEIGHT) / 2.0f;
 		wall_h = WIN_HEIGHT;
+	}
 	start_y = (WIN_HEIGHT / 2) - (wall_h / 2);
 	end_y = start_y + wall_h;
-	// if (r->dist_wall < TILE_SIZE)
-	// 	fix_distorsion(r);
 	handle_tex_buffer(tex_buffer, ray_rad, r);
 	draw_vline_texture(start_y, end_y, tex_buffer, r);
 	return ;
@@ -249,9 +261,6 @@ void	raycasting(t_data *d, t_player *player, t_raycasting *r)
 	ray_rad = norm_rad_angle(r->player_rad - (degree_to_radian(r->fov) / 2));
 	while (r->curr_ray < WIN_WIDTH)
 	{
-		// printf("ray_drawed rad = %d\n", ray_drawed);
-		// printf("ray_angle rad = %f\n", ray_angle);
-		// printf("player dir = %f\n", r->player_rad);
 		inter_hline(d, player, r, ray_rad);
 		inter_vline(d, player, r, ray_rad);
 		find_closest_inter(player, r, &closest_inter);

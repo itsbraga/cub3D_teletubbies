@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/14 20:13:03 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/15 18:05:17 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,10 @@ typedef struct s_raycasting
 	t_point			v_offset;
 	unsigned int	curr_ray;
 	float			dist_wall;
+	int				wall_h;
 	int				tex_x;
+	float			step_tex_y;
+	float			off_tex_y;
 	bool			vertical_hit;
 	unsigned int	fov;
 	float			player_rad;
