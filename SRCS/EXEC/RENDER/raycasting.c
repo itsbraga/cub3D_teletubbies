@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/15 23:01:44 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/16 14:49:50 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,28 +195,41 @@ void	handle_tex_buffer(int *tex_buffer, float ray_rad, t_raycasting *r)
 			load_tex_buffer(EA, tex_buffer);
 	}
 }
+void	draw_ceiling(float wall_h, t_raycasting *r)
+{
+	int	curr_x;
+	int	curr_y;
+	int	end_y;
+	t_img *img;
 
+	curr_x = r->curr_ray;
+	curr_y = 0;
+	end_y = (WIN_HEIGHT - wall_h) / 2;
+	img = &mlx_s()->img;
+	while (curr_y <= end_y)
+	{
+		my_pixel_put_to_img(img, GRAY_PIX, curr_x, curr_y);
+		curr_y++;
+	}
+	return;
+}
 
-// void	fix_distorsion(unsigned	int curr_x, t_raycasting *r)
-// {
-// 	float	dist_wall_factor;
-// 	float	ray_pos_factor;
-// 	float	center_tex;
-// 	float	blend_f;
-// 	int		original_tex_x;
+void	draw_floor(float wall_h, t_raycasting *r)
+{
+	int	curr_x;
+	int	curr_y;
+	t_img *img;
 
-// 	dist_wall_factor = r->dist_wall / (TILE_SIZE * 0.5f);
-// 	ray_pos_factor = fabsf((float)curr_x - (WIN_WIDTH / 2)) / (WIN_WIDTH / 2);
-// 	center_tex = TILE_SIZE / 2.0f;
-// 	blend_f = 0.0f;
-// 	original_tex_x = r->tex_x;
-// 	if (ray_pos_factor > 0.5f)
-// 	{
-// 		blend_f = (ray_pos_factor - 0.5f) * 2.0f * (1.0f - dist_wall_factor);
-// 		r->tex_x = (int)(original_tex_x * (1.0f - blend_f) + center_tex * blend_f);
-// 		r->tex_x = r->tex_x & (TILE_SIZE - 1);
-// 	}
-// }
+	curr_x = r->curr_ray;
+	curr_y = (WIN_HEIGHT + wall_h) / 2;
+	img = &mlx_s()->img;
+	while (curr_y <= WIN_HEIGHT)
+	{
+		my_pixel_put_to_img(img, GRAY_PIX, curr_x, curr_y);
+		curr_y++;
+	}
+	return;
+}
 
 void	draw_wall(float ray_rad, t_raycasting *r)
 {
@@ -229,6 +242,7 @@ void	draw_wall(float ray_rad, t_raycasting *r)
 	fixed_angle = r->player_rad - ray_rad;
 	fixed_angle = norm_rad_angle(fixed_angle);
 	r->dist_wall = r->dist_wall * cos(fixed_angle);
+	printf("dist_wall = %f\n", r->dist_wall);
 	wall_h = (TILE_SIZE * WIN_HEIGHT) / r->dist_wall;
 	r->step_tex_y = TILE_SIZE / wall_h;
 	r->off_tex_y = 0;
@@ -239,6 +253,8 @@ void	draw_wall(float ray_rad, t_raycasting *r)
 	}
 	start_y = (WIN_HEIGHT / 2) - (wall_h / 2);
 	end_y = start_y + wall_h;
+	draw_ceiling(wall_h, r);
+	draw_floor(wall_h, r);
 	handle_tex_buffer(tex_buffer, ray_rad, r);
 	draw_vline_texture(start_y, end_y, tex_buffer, r);
 	return ;

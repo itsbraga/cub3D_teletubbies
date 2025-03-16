@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:30:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/13 03:32:42 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/16 15:59:18 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,6 @@ int	main(int argc, char **argv)
 	// }
 	print_map_debug(data->map, argv[1]);
 	set_hooks(mlx, game);
-	mlx_loop_hook(mlx->mlx_ptr, &render, game);
+	mlx_loop_hook(mlx->mlx_ptr, &render_frame, game);
 	mlx_loop(mlx->mlx_ptr);
 }

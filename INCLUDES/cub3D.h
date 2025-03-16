@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/16 00:40:01 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/16 15:59:18 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -211,8 +211,8 @@ void	draw_vline_texture(int start_y, int end_y, int *tex_buffer, t_raycasting *r
 // RENDER/raycasting.c
 void		raycasting(t_data *d, t_player *player, t_raycasting *r);
 
-// RENDER/render.c
-int			render(t_game *game);
+// RENDER/render_frame.c
+int			render_frame(t_game *game);
 
 // MINIMAP/draw_player.c
 void		draw_player(t_game *game, t_minimap *minimap, t_player *player);
