@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/16 14:49:50 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/16 19:16:23 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -200,15 +200,26 @@ void	draw_ceiling(float wall_h, t_raycasting *r)
 	int	curr_x;
 	int	curr_y;
 	int	end_y;
+	int		color;
+	float	shadow_factor;
 	t_img *img;
 
 	curr_x = r->curr_ray;
 	curr_y = 0;
 	end_y = (WIN_HEIGHT - wall_h) / 2;
+	color = GRAY_PIX;
 	img = &mlx_s()->img;
 	while (curr_y <= end_y)
 	{
-		my_pixel_put_to_img(img, GRAY_PIX, curr_x, curr_y);
+		if (curr_y != 0)
+		{
+			shadow_factor = 1 - ((float)curr_y / (float)end_y);
+			if (shadow_factor < 0.1)
+				shadow_factor = 0.1;
+			// printf("%s | shadow factor = %f\n", __func__, shadow_factor);
+			color = apply_shadow_factor(GRAY_PIX, shadow_factor);
+		}
+		my_pixel_put_to_img(img, color, curr_x, curr_y);
 		curr_y++;
 	}
 	return;
@@ -218,6 +229,8 @@ void	draw_floor(float wall_h, t_raycasting *r)
 {
 	int	curr_x;
 	int	curr_y;
+	int	color;
+	float	shadow_factor;
 	t_img *img;
 
 	curr_x = r->curr_ray;
@@ -225,10 +238,23 @@ void	draw_floor(float wall_h, t_raycasting *r)
 	img = &mlx_s()->img;
 	while (curr_y <= WIN_HEIGHT)
 	{
-		my_pixel_put_to_img(img, GRAY_PIX, curr_x, curr_y);
+		shadow_factor = (float)curr_y / (float)WIN_HEIGHT;
+		if (shadow_factor < 0.1)
+				shadow_factor = 0.1;
+		// printf("%s | shadow factor = %f\n", __func__, shadow_factor);
+		color = apply_shadow_factor(GRAY_PIX, shadow_factor);
+		my_pixel_put_to_img(img, color, curr_x, curr_y);
 		curr_y++;
 	}
 	return;
+}
+
+void	set_shadow_factor(t_raycasting *r)
+{
+	r->shadow_factor = 1 - (r->dist_wall / VISIBILITY_DIST_MAX);
+	// r->shadow_factor = r->shadow_factor * r->shadow_factor;
+	if (r->shadow_factor < 0.1)
+		r->shadow_factor = 0.1;
 }
 
 void	draw_wall(float ray_rad, t_raycasting *r)
@@ -242,6 +268,7 @@ void	draw_wall(float ray_rad, t_raycasting *r)
 	fixed_angle = r->player_rad - ray_rad;
 	fixed_angle = norm_rad_angle(fixed_angle);
 	r->dist_wall = r->dist_wall * cos(fixed_angle);
+	set_shadow_factor(r);
 	printf("dist_wall = %f\n", r->dist_wall);
 	wall_h = (TILE_SIZE * WIN_HEIGHT) / r->dist_wall;
 	r->step_tex_y = TILE_SIZE / wall_h;
@@ -253,8 +280,7 @@ void	draw_wall(float ray_rad, t_raycasting *r)
 	}
 	start_y = (WIN_HEIGHT / 2) - (wall_h / 2);
 	end_y = start_y + wall_h;
-	draw_ceiling(wall_h, r);
-	draw_floor(wall_h, r);
+	(draw_ceiling(wall_h, r), draw_floor(wall_h, r));
 	handle_tex_buffer(tex_buffer, ray_rad, r);
 	draw_vline_texture(start_y, end_y, tex_buffer, r);
 	return ;

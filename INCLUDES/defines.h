@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/16 00:47:00 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/16 16:27:38 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define PROJ_DISTANCE ((WIN_WIDTH / 2) / tan(degree_to_radian(FOV) / 2))
 # define MOVE_SPEED 3
 # define ROTATION_SPEED 2
+# define VISIBILITY_DIST_MAX 450
 
 /**************************\
  * YAMA FLAGS

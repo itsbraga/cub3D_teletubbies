@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/16 15:59:18 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/16 19:13:12 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,6 +206,7 @@ t_img		xpm_to_mlx_img(char *relative_path);
 void		draw_line(t_img *img, t_point p0, t_point p1, int color);
 
 // RENDER/draw_texture.c
+int		apply_shadow_factor(int color, float shadow_factor);
 void	draw_vline_texture(int start_y, int end_y, int *tex_buffer, t_raycasting *r);
 
 // RENDER/raycasting.c

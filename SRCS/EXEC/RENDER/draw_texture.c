@@ -6,11 +6,28 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 21:24:45 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/15 19:24:23 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/16 17:26:38 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+int	apply_shadow_factor(int color, float shadow_factor)
+{
+	int color_shadowed;
+	int	r;
+	int	g;
+	int	b;
+
+	r = (color >> 16) & 0xFF;
+	g = (color >> 8) & 0xFF;
+	b = color & 0xFF;
+	r = (int)r * shadow_factor;
+	g = (int)g * shadow_factor;
+	b = (int)b * shadow_factor;
+	color_shadowed = ((r & 0xFF) << 16) | ((g & 0xFF) << 8) | (b & 0xFF);
+	return (color_shadowed);
+}
 
 void	draw_vline_texture(int start_y, int end_y, int *tex_buffer, t_raycasting *r)
 {
@@ -31,6 +48,7 @@ void	draw_vline_texture(int start_y, int end_y, int *tex_buffer, t_raycasting *r
 		tex_y = (int)accumulator_tex_y & (TILE_SIZE -1);
 		accumulator_tex_y += r->step_tex_y;
 		color = tex_buffer[tex_y * TILE_SIZE + r->tex_x];
+		color = apply_shadow_factor(color, r->shadow_factor);
 		my_pixel_put_to_img(img, color, curr_x, curr_y);
 		curr_y++;
 	}
