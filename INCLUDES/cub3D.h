@@ -6,7 +6,11 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/03/16 20:44:22 by annabrag         ###   ########.fr       */
+=======
+/*   Updated: 2025/03/16 19:13:12 by pmateo           ###   ########.fr       */
+>>>>>>> 2c5bc2d17af70a32b57070d2b742a0779b5dc866
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -202,7 +206,8 @@ void		clear_img(t_img *img, size_t size_x, size_t size_y, int color);
 // draw_line.c
 void		draw_line(t_img *img, t_point p0, t_point p1, int color);
 
-// draw_texture.c
+// RENDER/draw_texture.c
+int		apply_shadow_factor(int color, float shadow_factor);
 void	draw_vline_texture(int start_y, int end_y, int *tex_buffer, t_raycasting *r);
 
 // raycasting.c

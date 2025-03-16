@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/15 20:41:27 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/16 16:24:23 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ typedef struct s_raycasting
 	int				tex_x;
 	float			step_tex_y;
 	float			off_tex_y;
+	float			shadow_factor;
 	bool			vertical_hit;
 	unsigned int	fov;
 	float			player_rad;
