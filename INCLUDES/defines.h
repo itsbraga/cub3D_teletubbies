@@ -3,19 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/16 00:47:00 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/16 20:04:12 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef DEFINES_H
 # define DEFINES_H
 
-# ifndef BONUS
-#  define BONUS 1
-# endif
+#ifndef BONUS
+# define BONUS 1
+#endif
+
+#ifndef MAX
+# define MAX(a, b) ((a) > (b) ? (a) : (b))
+#endif
+
+#ifndef MIN
+# define MIN(a, b) ((a) < (b) ? (a) : (b))
+#endif
 
 /**************************\
  * MATHS
@@ -62,6 +70,8 @@
 
 // minilibX
 # define ERR_MLX "Cannot initialize minilibX"
+# define ERR_INIT_IMG "Cannot initialize minilibX image"
+# define ERR_INIT_MMAP_IMG "\033[38;2;211;211;255m[minimap]\033[0m Cannot initialize minilibX image"
 # define ERR_WIN "Cannot create new window"
 # define ERR_IMG "Cannot create new image"
 # define ERR_ADDR "Cannot find image address"

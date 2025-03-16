@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_tools.c                                       :+:      :+:    :+:   */
+/*   draw_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 17:22:58 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/12 18:22:31 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/16 20:11:28 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ void	swap_point(t_point *p0, t_point *p1)
 	p0->y = tmp.y;
 }
 
-bool	valid_point(t_point point, size_t win_x, size_t win_y)
+bool	valid_point(t_point point, size_t win_width, size_t win_height)
 {
-	if (point.x > win_x || point.x < 0)
+	if (point.x > win_width || point.x < 0)
 		return (false);
-	if (point.y > win_y || point.y < 0)
+	if (point.y > win_height || point.y < 0)
 		return (false);
 	return (true);
 }

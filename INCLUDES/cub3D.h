@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/16 15:59:18 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/16 20:44:22 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void			get_file_data(int fd, t_data *data);
 short			parsing(char *arg, t_data *data, t_game *game);
 
 /**********************\
- *	TOOLS
+ *	UTILS
 \**********************/
 
 // err_msg.c
@@ -88,9 +88,9 @@ void		err_msg_quoted(char *context, char *reason);
 void		secure_malloc(void *to_secure, bool full_clean);
 void		my_free(void **to_free);
 
-// draw_tools.c
+// draw_utils.c
 void		swap_point(t_point *p0, t_point *p1);
-bool		valid_point(t_point point, size_t win_x, size_t win_y);
+bool		valid_point(t_point point, size_t win_width, size_t win_height);
 
 // formulas.c
 float		degree_to_radian(int degree);
@@ -133,19 +133,10 @@ void		*yama(int flag, void *ptr, size_t size);
  *	INIT
 \**********************/
 
-// TITLE_SCREEN/layers.c
-void		background(t_title_screen *s);
-void		start_button(t_title_screen *s);
-void		controls_menu(t_title_screen *s);
-
-// TITLE_SCREEN/init.c
-void		init_title_screen(t_title_screen *screen);
-void		draw_title_screen(t_game *game, t_mlx *mlx);
-
 // singletons.c
-t_mlx		*mlx_s(void);
-t_game		*game_s(void);
-t_data		*data_s(void);
+t_mlx		*s_mlx(void);
+t_game		*s_game(void);
+t_data		*s_data(void);
 
 // init_mlx.c
 void		init_mlx(t_mlx *mlx, t_game *game);
@@ -186,55 +177,56 @@ void		set_mouse_hooks(t_mlx *mlx, t_game *game);
 void		set_hooks(t_mlx *mlx, t_game *game);
 
 /**********************\
- *	EXEC
+ *	RENDER
 \**********************/
 
 // map_info.c
 void		get_map_info(t_map *m);
 
-// collisions.c
-int			handle_collisions(t_data *data, t_player *player, t_point *new_player_pos);
+// xpm_to_mlx_img.c
+t_img		xpm_to_mlx_img(char *relative_path);
+
+// TITLE_SCREEN/layers.c
+void		background(t_title_screen *s);
+void		start_button(t_title_screen *s);
+void		controls_menu(t_title_screen *s);
+
+// TITLE_SCREEN/init.c
+void		init_title_screen(t_title_screen *screen);
+void		draw_title_screen(t_game *game, t_mlx *mlx);
 
 // pixels.c
 void		my_pixel_put_to_img(t_img *img, int color, int x, int y);
 void		clear_img(t_img *img, size_t size_x, size_t size_y, int color);
 
-// RENDER/xpm_to_mlx_img.c
-t_img		xpm_to_mlx_img(char *relative_path);
-
-// RENDER/draw_line.c
+// draw_line.c
 void		draw_line(t_img *img, t_point p0, t_point p1, int color);
 
-// RENDER/draw_texture.c
+// draw_texture.c
 void	draw_vline_texture(int start_y, int end_y, int *tex_buffer, t_raycasting *r);
 
-// RENDER/raycasting.c
+// raycasting.c
 void		raycasting(t_data *d, t_player *player, t_raycasting *r);
 
-// RENDER/render_frame.c
-int			render_frame(t_game *game);
+// collisions.c
+int			handle_collisions(t_data *data, t_player *player, t_point *new_player_pos);
+
+// MINIMAP/create_viewport.c
+t_viewport	compute_viewport(t_game *game, t_minimap *minimap);
+void		draw_viewport_walls(t_minimap *minimap, t_map *map);
+void		draw_player_in_viewport(t_game *game, t_minimap *minimap);
+
+// MINIMAP/init_img.c
+int			init_minimap_img(t_mlx *mlx, t_minimap *minimap);
 
 // MINIMAP/draw_player.c
 void		draw_player(t_game *game, t_minimap *minimap, t_player *player);
 
-// MINIMAP/init_minimap.c
-int			init_minimap_img(t_mlx *mlx, t_minimap *minimap);
-
 // MINIMAP/minimap.c
+void		draw_minimap_tile(t_minimap *minimap, t_point tile);
 void		render_minimap(t_game *game, t_minimap *minimap);
 
-// MINIMAP/NEW/viewport.c
-t_viewport	compute_viewport(t_game *game, t_map *map, int view_half,
-	size_t tile_size);
-void		draw_viewport_walls(t_minimap *minimap, t_map *map);
-void		draw_player_in_viewport(t_game *game, t_minimap *minimap);
-
-// MINIMAP/NEW/init_minimap_v2.c
-int			init_minimap_img_v2(t_mlx *mlx, t_minimap *minimap);
-
-// MINIMAP/NEW/minimap_v2.c
-void		draw_minimap_tile(t_minimap *minimap, t_point tile);
-void		draw_miniplayer(t_minimap *minimap, t_point *relative);
-void		render_minimap_v2(t_game *game, t_minimap *minimap);
+// render_frame.c
+int			render_frame(t_game *game);
 
 #endif

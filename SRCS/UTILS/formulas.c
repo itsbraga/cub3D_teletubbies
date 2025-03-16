@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/13 22:35:52 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/15 18:58:44 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/16 17:27:01 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	norm_h_angle(int angle)
 {
 	if (angle < 0)
 		angle += 360;
-	else if (angle >= 360)
+	else if (angle > 360)
 		angle = angle % 360;
 	return (angle);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   singletons.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 01:01:31 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/13 03:31:25 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/16 20:05:07 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 	one instance and provides a global access point
 	to it.
 */
-t_game	*game_s(void)
+t_game	*s_game(void)
 {
 	static t_game	*instance = NULL;
 
@@ -38,7 +38,7 @@ t_game	*game_s(void)
 	return (instance);
 }
 
-t_mlx	*mlx_s(void)
+t_mlx	*s_mlx(void)
 {
 	static t_mlx	*instance = NULL;
 	
@@ -53,7 +53,7 @@ t_mlx	*mlx_s(void)
 	return (instance);
 }
 
-t_data	*data_s(void)
+t_data	*s_data(void)
 {
 	static t_data	*instance = NULL;
 

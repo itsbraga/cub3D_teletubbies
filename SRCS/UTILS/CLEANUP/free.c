@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 21:09:30 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/12 18:24:02 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/16 19:47:06 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	free_int_array(int **array)
 void	free_title_screen(t_title_screen *screen)
 {
 	if (screen->first_layer.img_ptr != NULL)
-		del_img(mlx_s(), screen->first_layer.img_ptr);
+		del_img(s_mlx(), screen->first_layer.img_ptr);
 	if (screen->second_layer.img.img_ptr != NULL)
-		del_img(mlx_s(), screen->second_layer.img.img_ptr);
+		del_img(s_mlx(), screen->second_layer.img.img_ptr);
 }

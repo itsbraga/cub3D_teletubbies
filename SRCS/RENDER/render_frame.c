@@ -24,7 +24,7 @@ int	render_frame(t_game *game)
 {
 	t_data	*data;
 
-	data = data_s();
+	data = s_data();
 	if (game->state == TITLE_SCREEN)
 		draw_title_screen(game, game->mlx);
 	else if (game->state == GAME)
@@ -38,8 +38,8 @@ int	render_frame(t_game *game)
 		mlx_put_image_to_window(game->mlx->mlx_ptr, game->mlx->win_ptr,
 			game->mlx->img.img_ptr, 0, 0);
 		if (BONUS)
-			// render_minimap(game, game->minimap);
-			render_minimap_v2(game, game->minimap);
+			// old_render_minimap(game, game->minimap);
+			render_minimap(game, game->minimap);
 	}
 	return (SUCCESS);
 }

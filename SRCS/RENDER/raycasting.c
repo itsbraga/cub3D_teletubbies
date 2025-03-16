@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/16 14:49:50 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/16 19:47:06 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,7 @@ void	load_tex_buffer(int orientation, int *tex_buffer)
 
 	x = 0;
 	y = 0;
-	tex_img = &data_s()->textures->imgs[orientation];
+	tex_img = &s_data()->textures->imgs[orientation];
 	pixel_addr = NULL;
 	while (y < TILE_SIZE)
 	{
@@ -205,7 +205,7 @@ void	draw_ceiling(float wall_h, t_raycasting *r)
 	curr_x = r->curr_ray;
 	curr_y = 0;
 	end_y = (WIN_HEIGHT - wall_h) / 2;
-	img = &mlx_s()->img;
+	img = &s_mlx()->img;
 	while (curr_y <= end_y)
 	{
 		my_pixel_put_to_img(img, GRAY_PIX, curr_x, curr_y);
@@ -222,7 +222,7 @@ void	draw_floor(float wall_h, t_raycasting *r)
 
 	curr_x = r->curr_ray;
 	curr_y = (WIN_HEIGHT + wall_h) / 2;
-	img = &mlx_s()->img;
+	img = &s_mlx()->img;
 	while (curr_y <= WIN_HEIGHT)
 	{
 		my_pixel_put_to_img(img, GRAY_PIX, curr_x, curr_y);

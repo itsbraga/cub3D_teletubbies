@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/03/16 17:01:41 by annabrag          #+#    #+#              #
+#    Updated: 2025/03/16 17:03:15 by annabrag         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 #—————————————————————————————————————————————
 #	ANSI
 #—————————————————————————————————————————————
@@ -95,4 +107,7 @@ re:	fclean all
 debug: fclean $(LIBFT) $(MLX)
 		@make --no-print-directory $(NAME) CFLAGS="$(CFLAGS) $(DEBUG)"
 
-.PHONY:	all clean fclean re bonus debug
+debug_bonus: fclean $(LIBFT) $(MLX)
+		@make --no-print-directory $(NAME) CFLAGS="$(CFLAGS) $(DEBUG)" BONUS=1
+
+.PHONY:	all clean fclean re bonus debug debug_bonus

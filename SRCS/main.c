@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:30:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/16 15:59:18 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/16 19:47:06 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	print_map_debug(t_map *map, const char *name)
 	printf(BOLD PINK "\n%s: " RESET, name);
 	printf("[height = %zu, width = %zu]\n", map->height, map->width);
 	printf(BOLD PG "Player position: [%f, %f]\n\n" RESET, \
-		game_s()->player->pos.x, game_s()->player->pos.y);
+		s_game()->player->pos.x, s_game()->player->pos.y);
 	while (i < map->height)
 	{
 		printf("%s\n", map->map2d[i]);
@@ -41,9 +41,9 @@ int	main(int argc, char **argv)
 		ft_printf(STDERR_FILENO, BOLD PY ERR_USAGE RESET);
 		exit(FAILURE);
 	}
-	data = data_s();
-	game = game_s();
-	mlx = mlx_s();
+	data = s_data();
+	game = s_game();
+	mlx = s_mlx();
 	init_structs(data, game, mlx);
 	// if (parsing(argv[1], data, game) == FAILURE)
 	// {

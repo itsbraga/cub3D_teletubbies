@@ -19,7 +19,7 @@ static void	__free_data(t_data *data)
 		if (data->map != NULL)
 			free_map(data->map);
 		// if (data->texture != NULL)
-		// 	del_img(mlx_s(), data->texture->img_ptr); x4
+		// 	del_img(s_mlx(), data->texture->img_ptr); x4
 	}
 }
 
@@ -60,11 +60,11 @@ int	exit_game(t_mlx *mlx, int exit_code)
 
 void	clean_exit(int exit_code)
 {
-	free_title_screen(&game_s()->title_screen);
-	if (data_s() != NULL)
-		__free_data(data_s());
-	if (game_s() != NULL)
-		__free_game(game_s());
+	free_title_screen(&s_game()->title_screen);
+	if (s_data() != NULL)
+		__free_data(s_data());
+	if (s_game() != NULL)
+		__free_game(s_game());
 	// yama(CLEAN_ALL, NULL, 0);
-	exit_game(mlx_s(), exit_code);
+	exit_game(s_mlx(), exit_code);
 }

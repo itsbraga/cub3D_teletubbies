@@ -30,11 +30,11 @@ int		mlx_mouse_show(t_xvar *xvar, t_win_list *win)
 ** specified window and saves it to the provided location.
 **
 ** If the pointer is not on the same screen as the specified window, both
-** win_x_return and win_y_return are set to zero and the function returns 0.
+** win_width_return and win_height_return are set to zero and the function returns 0.
 */
 
 int		mlx_mouse_get_pos(t_xvar *xvar, t_win_list *win, \
-			int *win_x_return, int *win_y_return)
+			int *win_width_return, int *win_height_return)
 {
 	Window		root_return;
 	Window		child_return;
@@ -44,5 +44,5 @@ int		mlx_mouse_get_pos(t_xvar *xvar, t_win_list *win, \
 
 	return (XQueryPointer(xvar->display, win->window, \
 		&root_return, &child_return, &root_x_return, &root_y_return, \
-		win_x_return, win_y_return, &mask_return));
+		win_width_return, win_height_return, &mask_return));
 }

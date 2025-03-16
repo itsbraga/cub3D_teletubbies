@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 19:44:33 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/15 20:05:48 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/16 17:26:00 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	__reset_mouse_position(t_mlx *mlx)
 	return (center_x);
 }
 
-static int	__check_mouse_boundaries(int x, int *prev_x, t_mlx *mlx)
+static int	__handle_mouse_boundaries(int x, int *prev_x, t_mlx *mlx)
 {
 	if (x < WIN_WIDTH / 10 || x > WIN_WIDTH * 9 / 10)
 	{
@@ -42,7 +42,7 @@ static int	__mouse_motion(int x, int y, t_game *game)
 
 	if (prev_x == -1)
 		prev_x = x;
-	if (__check_mouse_boundaries(x, &prev_x, game->mlx) == 1)
+	if (__handle_mouse_boundaries(x, &prev_x, game->mlx) == 1)
 		return (recentered = true, SUCCESS);
 	if (recentered == true)
     {

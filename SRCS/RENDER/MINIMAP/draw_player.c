@@ -104,21 +104,31 @@ void	draw_player(t_game *game, t_minimap *minimap, t_player *player)
 	t_triangle	iso;
 	t_point		new_pos;
 
-	L = 40; //  augmenter si map tres petite, voir n (window / n)
+	L = minimap->tile_size;
 	h = 1.3 * L;
 	offset_dist = L / 2;
 	ft_memset(&iso, 0, sizeof(t_triangle));
 	iso.theta = degree_to_radian(player->dir);
 	new_pos.x = player->pos.x - cos(iso.theta) * offset_dist;
 	new_pos.y = player->pos.y - sin(iso.theta) * offset_dist;
-	iso.a.x = (new_pos.x + cos(iso.theta) * h) / 4;
-	iso.a.y = (new_pos.y + sin(iso.theta) * h) / 4;
-	iso.b.x = (new_pos.x + cos(iso.theta + (PI / 2)) * offset_dist) / 4;
-	iso.b.y = (new_pos.y + sin(iso.theta + (PI / 2)) * offset_dist) / 4;
-	iso.c.x = (new_pos.x + cos(iso.theta - (PI / 2)) * offset_dist) / 4;
-	iso.c.y = (new_pos.y + sin(iso.theta - (PI / 2)) * offset_dist) / 4;
+	iso.a.x = new_pos.x + cos(iso.theta) * h;
+	iso.a.y = new_pos.y + sin(iso.theta) * h;
+	iso.b.x = new_pos.x + cos(iso.theta + (PI / 2)) * offset_dist;
+	iso.b.y = new_pos.y + sin(iso.theta + (PI / 2)) * offset_dist;
+	iso.c.x = new_pos.x + cos(iso.theta - (PI / 2)) * offset_dist;
+	iso.c.y = new_pos.y + sin(iso.theta - (PI / 2)) * offset_dist;
     draw_line(&minimap->img, iso.a, iso.b, RED_PIX);
 	draw_line(&minimap->img, iso.b, iso.c, RED_PIX);
 	draw_line(&minimap->img, iso.c, iso.a, RED_PIX);
 	__fill_triangle(game, iso.a, iso.b, iso.c, RED_PIX);
+}
+
+void	draw_player_in_viewport(t_game *game, t_minimap *minimap)
+{
+	t_player	player_copy;
+
+	player_copy = *(game->player);
+	player_copy.pos.x = minimap->img.width / 2;
+	player_copy.pos.y = minimap->img.height / 2;
+	draw_player(game, minimap, &player_copy);
 }

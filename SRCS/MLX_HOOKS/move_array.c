@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 21:01:29 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/16 00:39:49 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/16 19:46:45 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	move_player(t_game *game, t_keys *key)
 		player->pos.y = roundf(player->pos.y + player->move.y);
 	}
 	else
-		__bonus_player_moves(data_s(), game);
+		__bonus_player_moves(s_data(), game);
 }
 
 void	reset_move(t_player *player)

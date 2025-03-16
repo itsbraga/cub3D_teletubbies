@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_texture.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 21:24:45 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/15 19:24:23 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/16 19:47:06 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	draw_vline_texture(int start_y, int end_y, int *tex_buffer, t_raycasting *r
 	curr_x = r->curr_ray;
 	curr_y = start_y;
 	accumulator_tex_y = r->off_tex_y * r->step_tex_y;
-	img = &mlx_s()->img;
+	img = &s_mlx()->img;
 	while (curr_y <= end_y)
 	{
 		tex_y = (int)accumulator_tex_y & (TILE_SIZE -1);

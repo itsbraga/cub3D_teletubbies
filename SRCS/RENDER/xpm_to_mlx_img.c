@@ -17,7 +17,7 @@ t_img	xpm_to_mlx_img(char *relative_path)
 	t_img	img;
 
 	ft_memset(&img, 0, sizeof(t_img));
-	img.img_ptr = mlx_xpm_file_to_image(mlx_s()->mlx_ptr, relative_path,
+	img.img_ptr = mlx_xpm_file_to_image(s_mlx()->mlx_ptr, relative_path,
 			&img.width,
 			&img.height);
 	if (img.img_ptr == NULL)
@@ -32,7 +32,7 @@ t_img	xpm_to_mlx_img(char *relative_path)
 	if (img.addr == NULL)
 	{
 		err_msg("minilibX", ERR_ADDR);
-		del_img(mlx_s(), img.img_ptr);
+		del_img(s_mlx(), img.img_ptr);
 		ft_memset(&img, 0, sizeof(t_img));
 	}
 	return (img);
