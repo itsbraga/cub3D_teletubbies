@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/16 20:59:06 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/17 14:22:22 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,22 +207,14 @@ void	draw_ceiling(float wall_h, t_raycasting *r)
 	curr_x = r->curr_ray;
 	curr_y = 0;
 	end_y = (WIN_HEIGHT - wall_h) / 2;
-<<<<<<< HEAD:SRCS/RENDER/raycasting.c
 	img = &s_mlx()->img;
-=======
-	color = GRAY_PIX;
-	img = &mlx_s()->img;
->>>>>>> 2c5bc2d17af70a32b57070d2b742a0779b5dc866:SRCS/EXEC/RENDER/raycasting.c
 	while (curr_y <= end_y)
 	{
-		if (curr_y != 0)
-		{
-			shadow_factor = 1 - ((float)curr_y / (float)end_y);
-			if (shadow_factor < 0.1)
-				shadow_factor = 0.1;
+		shadow_factor = 1 - ((float)curr_y / (float)(WIN_HEIGHT / 2));
+		if (shadow_factor < 0.1)
+			shadow_factor = 0.1;
 			// printf("%s | shadow factor = %f\n", __func__, shadow_factor);
-			color = apply_shadow_factor(GRAY_PIX, shadow_factor);
-		}
+		color = apply_shadow_factor(GRAY_PIX, shadow_factor);
 		my_pixel_put_to_img(img, color, curr_x, curr_y);
 		curr_y++;
 	}
@@ -242,10 +234,10 @@ void	draw_floor(float wall_h, t_raycasting *r)
 	img = &s_mlx()->img;
 	while (curr_y <= WIN_HEIGHT)
 	{
-		shadow_factor = (float)curr_y / (float)WIN_HEIGHT;
+		shadow_factor = ((float)curr_y / (float)WIN_HEIGHT) - 0.25;
 		if (shadow_factor < 0.1)
-				shadow_factor = 0.1;
-		// printf("%s | shadow factor = %f\n", __func__, shadow_factor);
+			shadow_factor = 0.1;
+		// printf("shadow factor = %f\n", shadow_factor);
 		color = apply_shadow_factor(GRAY_PIX, shadow_factor);
 		my_pixel_put_to_img(img, color, curr_x, curr_y);
 		curr_y++;
