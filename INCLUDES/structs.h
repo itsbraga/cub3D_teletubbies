@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/16 16:24:23 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/17 23:22:49 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,14 +144,12 @@ typedef struct s_data
 
 typedef struct s_viewport
 {
-	int		start_tile_x;
-	int		start_tile_y;
-	int		end_tile_x;
-	int		end_tile_y;
-	int		width_tiles;
-	int		height_tiles;
+	float	scale_x;
+	float	scale_y;
 	int		pixel_width;
 	int		pixel_height;
+	int		offset_x; // decalage pour centrer la carte
+	int		offset_y;
 }				t_viewport;
 
 typedef struct s_minimap
@@ -159,6 +157,9 @@ typedef struct s_minimap
 	t_viewport	vp;
 	t_img		img;
 	t_point		pos;
+	float		ratio;
+	int			width;
+	int			height;
 	size_t		tile_size;
 }				t_minimap;
 
@@ -169,8 +170,9 @@ typedef struct s_game
 	t_player		*player;
 	t_raycasting	*ray;
 	t_keys			*keys;
-	t_minimap		*minimap;
+	t_minimap		*mmap;
 	t_mlx			*mlx;
+	// t_data			*data;
 }				t_game;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 21:24:45 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/16 20:58:29 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/17 23:41:35 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	apply_shadow_factor(int color, float shadow_factor)
 	r = (color >> 16) & 0xFF;
 	g = (color >> 8) & 0xFF;
 	b = color & 0xFF;
-	r = (int)r * shadow_factor;
-	g = (int)g * shadow_factor;
-	b = (int)b * shadow_factor;
+	r = (int)(r * shadow_factor);
+	g = (int)(g * shadow_factor);
+	b = (int)(b * shadow_factor);
 	color_shadowed = ((r & 0xFF) << 16) | ((g & 0xFF) << 8) | (b & 0xFF);
 	return (color_shadowed);
 }

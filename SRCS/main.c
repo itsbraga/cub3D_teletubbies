@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:30:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/16 19:47:06 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/18 00:55:01 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	print_map_debug(t_map *map, const char *name)
 
 int	main(int argc, char **argv)
 {
-	(void)argv;
+	// (void)argv;
 	t_data	*data;
 	t_game	*game;
 	t_mlx	*mlx;
@@ -45,13 +45,14 @@ int	main(int argc, char **argv)
 	game = s_game();
 	mlx = s_mlx();
 	init_structs(data, game, mlx);
-	// if (parsing(argv[1], data, game) == FAILURE)
-	// {
-	// 	ft_printf(STDERR_FILENO, BOLD RED ERR RESET);
-	// 	clean_exit(FAILURE);
-	// }
+	if (parsing(argv[1], data) == FAILURE)
+	{
+		ft_printf(STDERR_FILENO, BOLD RED ERR RESET);
+		clean_exit(FAILURE);
+	}
 	print_map_debug(data->map, argv[1]);
 	set_hooks(mlx, game);
+	// mlx_loop_hook(mlx->mlx_ptr, &render_2d, data);
 	mlx_loop_hook(mlx->mlx_ptr, &render_frame, game);
 	mlx_loop(mlx->mlx_ptr);
 }

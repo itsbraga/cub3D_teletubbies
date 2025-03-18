@@ -6,11 +6,13 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:43:21 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/16 19:46:54 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/18 01:12:17 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
+
+// func assigner valeur du define de la direction du joueur et 
 
 void	get_player_direction(t_map *map, t_player *player)
 {
@@ -29,9 +31,10 @@ void	get_player_direction(t_map *map, t_player *player)
 		{
 			if (ft_strchr(PLAYER_DIR, map->map2d[i][j]) != NULL)
 			{
-				player->pos.x = (float)j + 0.5; // 0.5: decaler legerement (collisions)
-				player->pos.y = (float)i + 0.5;
-				player->dir = map->map2d[i][j];
+				player->pos.x = (float)j;// + 0.5; // 0.5: decaler legerement (collisions)
+				player->pos.y = (float)i;// + 0.5;
+				player->dir = map->map2d[i][j]; // remplacer par la fonction ci-dessus
+				printf("player dir: %d\n", player->dir);
 				player_count++;
 			}
 			j++;

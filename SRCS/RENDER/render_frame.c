@@ -29,17 +29,16 @@ int	render_frame(t_game *game)
 		draw_title_screen(game, game->mlx);
 	else if (game->state == GAME)
 	{
-		get_map_info(data->map);
+		// get_map_info(data->map);
 		move_player(game, game->keys);
 		reset_move(game->player);
-		get_textures(data);
+		// get_textures(data);
 		clear_img(&game->mlx->img, WIN_WIDTH, WIN_HEIGHT, BLACK_PIX);
 		raycasting(data, game->player, game->ray);
 		mlx_put_image_to_window(game->mlx->mlx_ptr, game->mlx->win_ptr,
 			game->mlx->img.img_ptr, 0, 0);
-		if (BONUS)
-			// old_render_minimap(game, game->minimap);
-			render_minimap(game, game->minimap);
+		// if (BONUS)
+		// 	render_minimap(game, game->mmap);
 	}
 	return (SUCCESS);
 }

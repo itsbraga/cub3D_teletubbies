@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 01:01:31 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/16 20:05:07 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/17 22:58:49 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ t_game	*s_game(void)
 		secure_malloc(instance->ray, true);
 		instance->keys = yama(CREATE, NULL, sizeof(t_keys));
 		secure_malloc(instance->keys, true);
-		instance->minimap = yama(CREATE, NULL, sizeof(t_minimap));
-		secure_malloc(instance->minimap, true);
+		instance->mmap = yama(CREATE, NULL, sizeof(t_minimap));
+		secure_malloc(instance->mmap, true);
 		instance->mlx = NULL;
+		// instance->data = NULL;
 	}
 	return (instance);
 }

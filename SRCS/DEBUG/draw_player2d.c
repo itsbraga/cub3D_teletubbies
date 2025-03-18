@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_player.c                                  :+:      :+:    :+:   */
+/*   draw_player.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/13 08:41:54 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/12 18:11:47 by art3mis          ###   ########.fr       */
+/*   Created: 2025/03/18 00:12:20 by annabrag          #+#    #+#             */
+/*   Updated: 2025/03/18 00:15:33 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static void	__fill_triangle(t_minimap *mmap, t_point p1, t_point p2, t_point p3, int color)
+static void	__fill_triangle(t_mlx *mlx, t_point p1, t_point p2, t_point p3, int color)
 {
     // Tri des points par Y croissant
     if (p1.y > p2.y) { t_point temp = p1; p1 = p2; p2 = temp; }
@@ -65,7 +65,7 @@ static void	__fill_triangle(t_minimap *mmap, t_point p1, t_point p2, t_point p3,
             
             if (x1 > x2) { int temp = x1; x1 = x2; x2 = temp; }
             for (int x = x1; x <= x2; x++) {
-                my_pixel_put_to_img(&mmap->img, color, x, y);
+                my_pixel_put_to_img(&mlx->img, color, x, y);
             }
             
             curx1 += slope1;
@@ -87,7 +87,7 @@ static void	__fill_triangle(t_minimap *mmap, t_point p1, t_point p2, t_point p3,
             
             if (x1 > x2) { int temp = x1; x1 = x2; x2 = temp; }
             for (int x = x1; x <= x2; x++) {
-                my_pixel_put_to_img(&mmap->img, color, x, y);
+                my_pixel_put_to_img(&mlx->img, color, x, y);
             }
             
             curx1 += slope3;
@@ -96,7 +96,7 @@ static void	__fill_triangle(t_minimap *mmap, t_point p1, t_point p2, t_point p3,
     }
 }
 
-void	draw_player(t_minimap *mmap, t_player *player)
+void	draw_player2d(t_mlx *mlx, t_player *player)
 {
 	int			L;
 	double		h;
@@ -104,7 +104,7 @@ void	draw_player(t_minimap *mmap, t_player *player)
 	t_triangle	iso;
 	t_point		new_pos;
 
-	L = mmap->tile_size;
+	L = 10;
 	h = 1.3 * L;
 	offset_dist = L / 2;
 	ft_memset(&iso, 0, sizeof(t_triangle));
@@ -117,8 +117,8 @@ void	draw_player(t_minimap *mmap, t_player *player)
 	iso.b.y = new_pos.y + sin(iso.theta + (PI / 2)) * offset_dist;
 	iso.c.x = new_pos.x + cos(iso.theta - (PI / 2)) * offset_dist;
 	iso.c.y = new_pos.y + sin(iso.theta - (PI / 2)) * offset_dist;
-    draw_line(&mmap->img, iso.a, iso.b, RED_PIX);
-	draw_line(&mmap->img, iso.b, iso.c, RED_PIX);
-	draw_line(&mmap->img, iso.c, iso.a, RED_PIX);
-	__fill_triangle(mmap, iso.a, iso.b, iso.c, RED_PIX);
+    draw_line(&mlx->img, iso.a, iso.b, RED_PIX);
+	draw_line(&mlx->img, iso.b, iso.c, RED_PIX);
+	draw_line(&mlx->img, iso.c, iso.a, RED_PIX);
+	__fill_triangle(mlx, iso.a, iso.b, iso.c, RED_PIX);
 }
