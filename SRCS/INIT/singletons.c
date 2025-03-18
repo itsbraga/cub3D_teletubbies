@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 01:01:31 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/17 22:22:12 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/18 01:31:25 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,10 @@ t_game	*s_game(void)
 		secure_malloc(instance->ray, true);
 		instance->keys = yama(CREATE, NULL, sizeof(t_keys));
 		secure_malloc(instance->keys, true);
-		instance->minimap = yama(CREATE, NULL, sizeof(t_minimap));
-		secure_malloc(instance->minimap, true);
+		instance->mmap = yama(CREATE, NULL, sizeof(t_minimap));
+		secure_malloc(instance->mmap, true);
 		instance->mlx = NULL;
+		// instance->data = NULL;
 	}
 	return (instance);
 }

@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/18 01:15:48 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/18 01:30:04 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void			fill_map2d_array(t_map *map, char *line);
 void			get_file_data(int fd, t_data *data);
 
 // parsing.c
-short			parsing(char *arg, t_data *data, t_game *game);
+short			parsing(char *arg, t_data *data);
 
 /**********************\
  *	UTILS
@@ -202,9 +202,10 @@ void		clear_img(t_img *img, size_t size_x, size_t size_y, int color);
 // draw_line.c
 void		draw_line(t_img *img, t_point p0, t_point p1, int color);
 
-// RENDER/draw_texture.c
+// draw_texture.c
 int			apply_shadow_factor(int color, float shadow_factor);
-void		draw_vline_texture(int start_y, int end_y, int *tex_buffer, t_raycasting *r);
+void		draw_vline_texture(int start_y, int end_y, int *tex_buffer,
+	t_raycasting *r);
 
 // raycasting.c
 void		raycasting(t_data *d, t_player *player, t_raycasting *r);
@@ -218,22 +219,39 @@ void		get_weapons(t_weapon *w);
 void		draw_weapon(t_game *game, t_weapon *w);
 void		render_weapon(t_game *game, t_weapon *w);
 
-// MINIMAP/create_viewport.c
-t_viewport	compute_viewport(t_game *game, t_minimap *minimap);
-void		draw_viewport_walls(t_minimap *minimap, t_map *map);
-void		draw_player_in_viewport(t_game *game, t_minimap *minimap);
-
-// MINIMAP/init_img.c
-int			init_minimap_img(t_mlx *mlx, t_minimap *minimap);
-
-// MINIMAP/draw_player.c
-void		draw_player(t_game *game, t_minimap *minimap, t_player *player);
-
-// MINIMAP/minimap.c
-void		draw_minimap_tile(t_minimap *minimap, t_point tile);
-void		render_minimap(t_game *game, t_minimap *minimap);
-
 // render_frame.c
 int			render_frame(t_game *game);
+
+/**********************\
+ *	MINIMAP
+\**********************/
+
+// draw_player.c
+void		draw_player(t_minimap *mmap, t_player *player);
+
+// viewport.c
+// t_viewport	compute_viewport(t_data *data, t_minimap *mmap);
+t_viewport	compute_viewport(t_minimap *mmap, int zone_width, int zone_height);
+void		draw_player_in_viewport(t_game *game, t_minimap *mmap);
+
+// init_img.c
+int			init_minimap_img(t_mlx *mlx, t_minimap *mmap);
+
+// draw.c
+void		draw_minimap(t_minimap *mmap, t_map *map);
+
+// minimap.c
+void		render_minimap(t_game *game, t_minimap *mmap);
+
+/**********************\
+ *	DEBUG
+\**********************/
+
+void	inter_hline(t_data *d, t_player *player, t_raycasting *r, float ray_rad);
+void	inter_vline(t_data *d, t_player *player, t_raycasting *r, float ray_rad);
+void	find_closest_inter(t_player *player, t_raycasting *r, t_point *closest_inter);
+void	draw_player2d(t_mlx *mlx, t_player *player);
+void	draw_grid(t_mlx *mlx);
+int		render_2d(t_data *data);
 
 #endif

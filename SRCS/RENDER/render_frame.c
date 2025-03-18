@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_frame.c                                           :+:      :+:    :+:   */
+/*   render_frame.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/16 23:09:28 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/16 15:58:53 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/18 01:33:49 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,20 +29,19 @@ int	render_frame(t_game *game)
 		draw_title_screen(game, game->mlx);
 	else if (game->state == GAME)
 	{
-		get_map_info(data->map);
+		// get_map_info(data->map);
 		move_player(game, game->keys);
 		reset_move(game->player);
-		get_textures(data);
+		// get_textures(data);
 		clear_img(&game->mlx->img, WIN_WIDTH, WIN_HEIGHT, BLACK_PIX);
 		raycasting(data, game->player, game->ray);
 		mlx_put_image_to_window(game->mlx->mlx_ptr, game->mlx->win_ptr,
 			game->mlx->img.img_ptr, 0, 0);
-		if (BONUS)
-		{
-			// old_render_minimap(game, game->minimap);
-			// render_minimap(game, game->minimap);
-			// render_weapon(game, data->weapon);
-		}
+		// if (BONUS)
+		// {
+		// 	render_minimap(game, game->mmap);
+		// 	render_weapon(game, data->weapon);
+		// }
 	}
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 21:01:29 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/16 19:46:45 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/18 01:09:39 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	move_player(t_game *game, t_keys *key)
 	{
 		player->pos.x = roundf(player->pos.x + player->move.x);
 		player->pos.y = roundf(player->pos.y + player->move.y);
+		// printf(BOLD BLUE "player dir: [%d]\n" RESET, player->dir);
 	}
 	else
 		__bonus_player_moves(s_data(), game);
