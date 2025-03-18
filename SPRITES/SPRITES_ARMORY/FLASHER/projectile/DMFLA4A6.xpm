@@ -1,0 +1,34 @@
+/* XPM */
+static char *DMFLA4A6[] = {
+/* columns rows colors chars-per-pixel */
+"30 21 7 1 ",
+"  c #9F3700",
+". c #A73F00",
+"X c #C34F00",
+"o c #DF670F",
+"O c #FF7F1B",
+"+ c #FFE74B",
+"@ c None",
+/* pixels */
+"@@@@@@@@@@@@@@XoX @@@@@@@@@@@@",
+"@@@@@@@@@@@@XoOX@@@@oOo  @@@@@",
+"@@@@@@@   XXOO.@@@@ Oo@@@@@@@@",
+"@@@@@@ XOXOO+o @XoOOo@@@@@@@@@",
+"@@@@@ oOooO+OoOOOOOX @@@Xo.@@@",
+"@@@ Xo++OO+OoOOOo.@@@@oOOOOo@@",
+"@@ XoO+OO++OOOOoOOoX@ @@@@@@.@",
+"@ XoO++O+++OOOOOO @@@@@@@@@@@@",
+"@XoOO++O++OOOO+OXXoOoX @@@@@@@",
+" XoO+O++++O+++OoOOO++OOOoX@@@@",
+"XoO++OO++OOO+OoOO+OOo.@@@O@@@@",
+"XoO++OOO+O++OoOO+OO @@@@@@ @@@",
+"XoOO+OOO+OOOOOO+OoX@@@@@@@@@@@",
+" XoOO+OOOOOOOOOOOo .oOOoX@@@@@",
+"@ XoO+OOOO+OooOOOOOOOooOO @@@@",
+"@  XoO+ooOO+OoooX....@@ XOo. @",
+"@@@ XoOOooOOOo  @@@@@@@@@@@@@ ",
+"@@@@  ooXXooOOX@@@@@@@@@@@@@@@",
+"@@@@@@..     XOX @@@@@ oX@@@@@",
+"@@@@@@@@@@@@@@ oOX@@@@@@X @@@@",
+"@@@@@@@@@@@@@@@ oOOX @@@@@@@@@"
+};

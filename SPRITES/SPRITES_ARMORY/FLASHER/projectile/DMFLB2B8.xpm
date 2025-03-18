@@ -1,0 +1,30 @@
+/* XPM */
+static char *DMFLB2B8[] = {
+/* columns rows colors chars-per-pixel */
+"29 17 7 1 ",
+"  c #9F3700",
+". c #A73F00",
+"X c #C34F00",
+"o c #DF670F",
+"O c #FF7F1B",
+"+ c #FFE74B",
+"@ c None",
+/* pixels */
+"@@@@@@@@@@@@@ .XoX @@@@@@ X @",
+"@@@@@@@@  XXXX.@@@@ XoX @@@@ ",
+"@@@@@   XXooooXX @ XoOoX @@@@",
+"@@@@ X..ooOOoX @@ XOX @@ . @@",
+"@@  XoXoOOOOX @@ XOo @@@@@@  ",
+"@ XXoXoOO+OoXXooXooX@@@@@@@@@",
+"@XooOoOO+OOoooOOoXX @@@@@@ @@",
+" XoOOOoO++OOOOOOo. @@ oo. @@@",
+" XoO+OOOO++O+OOoX   XoX @@@@@",
+" XoO++OO++++OOoOo.XooX @@@@@@",
+"@ XoO++++++OOoOOoXoX @@@@@@X@",
+"@@XoOO++++++OOoXX @@Xo. @@@@@",
+"@@ XoOOOO++OOoX @@ Xo @@ @@@@",
+"@@@ XoooOOOOoX @  XoX@@@@@@@@",
+"@@@  XXXoOOoX XoOOo @@@@@@@@@",
+"@@@@@   XooX .XXX @@@@@@@@@@@",
+"@@@@@@@@    @@  @@@@@@@@@@@@@"
+};

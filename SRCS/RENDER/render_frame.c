@@ -38,8 +38,11 @@ int	render_frame(t_game *game)
 		mlx_put_image_to_window(game->mlx->mlx_ptr, game->mlx->win_ptr,
 			game->mlx->img.img_ptr, 0, 0);
 		if (BONUS)
+		{
 			// old_render_minimap(game, game->minimap);
-			render_minimap(game, game->minimap);
+			// render_minimap(game, game->minimap);
+			// render_weapon(game, data->weapon);
+		}
 	}
 	return (SUCCESS);
 }

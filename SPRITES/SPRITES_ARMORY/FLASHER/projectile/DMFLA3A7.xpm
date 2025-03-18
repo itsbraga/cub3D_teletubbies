@@ -1,0 +1,35 @@
+/* XPM */
+static char *DMFLA3A7[] = {
+/* columns rows colors chars-per-pixel */
+"45 23 6 1 ",
+"  c #9F3700",
+". c #C34F00",
+"X c #DF670F",
+"o c #FF7F1B",
+"O c #FFE74B",
+"+ c None",
+/* pixels */
+"+++++++++++++    ++++++++++++++++++++++++++++",
+"+++++++++++ .Xooo.  +++++++++++++++++++++++++",
+"++++++++ .XXooX. ++++++++++++++++++++++++++++",
+"++++++   XooX +++++++++++++++++++++++++++++++",
+"+++++ .XXoooX  + .XXXX. + .X. +++++++++++++++",
+"++++ XXooOoX.. .XXooooXXXXX +++++++++++++++++",
+"++  .XooOoX.XXXXoooXXXXXX. ++++++ .X.  .. +++",
+"++ .XXoooXoooooooXX. ++++++++++ .XoX ++++++++",
+"+ .XXoooooOoooXoXXXXXXXXXXX + .XooX.+++++++++",
+" .XooooOOooooXooooXooOOOooooX.. +++++++++++++",
+" XooooOOOOooXXoooooooooooXX.+++++++++++++++++",
+" XOoooOOoooXXooooXXXXXXX+++++.XXX. ++++++++++",
+" XooooOoooooooooXX+++++++  .X.. +++++ . +++++",
+" .ooooooooXXXooXXXXXoooooXXX. +++++  .X. ++++",
+"+ .XooXooooooXooooooXXXXXX.. ++++++++++ ...  ",
+"++ .XXooOooooooooXXXX..... ++++++++++++++++++",
+"+++ .XooOOOooXXXX.... +++++++++++++++++++++++",
+"+++ .XXooooooX...   +++++++++++++++++++++++++",
+"+++ ..XXXXXXX.   ++++++++++++++++++++++++++++",
+"++++ ........ +++++++++++ .X. +++++++++++++++",
+"+++++        +++++++++ .XoX ++ ++++++++++++++",
+"++++++++++++++++++  .XXX.. ++++++++++++++++++",
+"+++++++++++++++++++++   +++++++++++++++++++++"
+};

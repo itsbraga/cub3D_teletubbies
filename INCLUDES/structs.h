@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/16 16:24:23 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/17 22:41:43 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,25 @@ typedef struct s_triangle
 	float		theta;
 }				t_triangle;
 
+typedef struct	s_weapon
+{
+	int			id;
+	int			xpm_nb;
+	t_img		*sprites;
+	int			state;
+	int			frame_counter;
+	t_point		pos;
+}				t_weapon;
+
+typedef	struct	s_ennemy
+{
+	int 	id;
+	t_img 	*sprites;
+	float 	hp;
+	// behaviour struct
+}				t_ennemy;
+
+
 typedef struct s_player
 {
 	int			dir;
@@ -137,6 +156,8 @@ typedef struct s_data
 {
 	t_map			*map;
 	t_textures		*textures;
+	t_weapon		*weapon;
+	t_ennemy		*ennemy;
 	unsigned int	floor_color;
 	unsigned int	ceiling_color;
 	unsigned int	feature_filled;

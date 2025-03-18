@@ -1,0 +1,33 @@
+/* XPM */
+static char *DMFLC1[] = {
+/* columns rows colors chars-per-pixel */
+"23 21 6 1 ",
+"  c #9F3700",
+". c #C34F00",
+"X c #DF670F",
+"o c #FF7F1B",
+"O c #FFE74B",
+"+ c None",
+/* pixels */
+"++++++++++++ .. +++++++",
+"++++++++++++++ XX +++++",
+"++++++++++    + .X ++++",
+"++++++++  ....  .X.++++",
+"+++     ...XX.. .o. +++",
+"+ .XXX.  .XooX..XoX.+++",
+"+.X   ....XXooX..ooX+++",
+" X + .XXXXoooooX.XoX+++",
+" ++ .XooooooooOoXXoX+++",
+" + .XoooOOOOooOoXXo. + ",
+"++ .XooooOOOOoooXoX.   ",
+"+ .XoooXooOOOooXooX. X ",
+"+ .XoXXooOoOooooooX. X ",
+"++ XoooooooOOOoooXXXX +",
+"++ .XoooooooooooXooX. +",
+"++ ...XoXXooooooooX. ++",
+"+++ . .X.XooOOOooX. +++",
+"+++++  . .XoooooX. ++++",
+"+++++++  .XXXXXX. +++++",
+"+++++++++ .XoooX. +++++",
+"++++++++++  ...  ++++++"
+};

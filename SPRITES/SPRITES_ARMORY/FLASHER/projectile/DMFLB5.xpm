@@ -1,0 +1,38 @@
+/* XPM */
+static char *DMFLB5[] = {
+/* columns rows colors chars-per-pixel */
+"27 26 6 1 ",
+"  c #9F3700",
+". c #C34F00",
+"X c #DF670F",
+"o c #FF7F1B",
+"O c #FFE74B",
+"+ c None",
+/* pixels */
+"+++++++++++++++ +++++++++++",
+"++++++++++++++ ++++++++++++",
+"+++++++   ++++. +++++++++++",
+"++++++ ...  ++ .X.. +++++++",
+"++++  . +.X. ++ .XoX. +++++",
+"++++++++ XoX. ++ .XoX.+++++",
+"+++++++ .XoX.  + .XoX. ++++",
+"+ X ++ .XooX. .  .XoX.. +++",
+" +.X. .XoooX..X..XoOoX. +++",
+"++.oXXXooooX.XoXXXoOoX. +++",
+"++.ooooXoOoXXooXoooooX. +++",
+"++ XooXXoOooooooooOoX. ++ +",
+"+++.X .XoOOoooOooOooX. +++ ",
+"++++ ...XooOOOOOOooooX +++ ",
+"++ ..XX.XXoooOOOoooooo. + .",
+"+ XXXooXXXXooooOoooXooX. X.",
+"+.. .XooooooooooooXXXXooX. ",
+"+.++.XoooOOoooOoooooX.... +",
+"+ ++ .XoooooooooooooX.   ++",
+" ++++ .XXXXooooXXooXoX ++++",
+"++++++ ...XoooX..XX.XX.. ++",
+"+++++++  .XooX. + ... ++. +",
+"+++++++++ .XoX.++++++++++ +",
+"++++++++++ .X. ++++++++++++",
+"+++++++++++ . ++ ++++++++++",
+"++++++++++++ .  +++++++++++"
+};

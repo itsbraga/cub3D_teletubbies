@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 19:17:31 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/16 20:29:59 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/18 01:24:22 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,8 @@ void	init_structs(t_data *data, t_game *game, t_mlx *mlx)
 	init_raycasting(game->ray, game);
 	init_keys(game->keys, game);
 	if (BONUS)
-		init_minimap(game->minimap, game);
+	{
+		// init_minimap(game->minimap, game);
+		// init_weapon(data->weapon, data);
+	}
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/16 20:57:28 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/17 21:53:05 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,14 @@ typedef void	(*move_array)(t_game *game);
 # define MOUSE_SENSITIVITY_X 0.1f
 # define MOUSE_SENSITIVITY_Y 0.05f
 # define MAX_PITCH 45 // designe le max d'inclinaison verticale de la camera
+
+/**************************\
+ * WEAPON
+\**************************/
+
+# define IDLE 0
+# define SHOOT 1
+# define FBS 4 // frame number by sprite
 
 /**************************\
  * PLAYER'S DIRECTION

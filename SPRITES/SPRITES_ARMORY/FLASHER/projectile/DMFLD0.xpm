@@ -1,0 +1,38 @@
+/* XPM */
+static char *DMFLD0[] = {
+/* columns rows colors chars-per-pixel */
+"25 25 7 1 ",
+"  c #9F3700",
+". c #C34F00",
+"X c #DF670F",
+"o c #FF7F1B",
+"O c yellow",
+"+ c #FFE74B",
+"@ c None",
+/* pixels */
+"@@@@@@ ....  @@@@@@@@@@@@",
+"@@@@ ..XooX...  @@@@@@@@@",
+"@@@ .XXoooooXX.. @@@@@@@@",
+"@@ .Xooo++ooooXX. @@@@@@@",
+"@ .XXooo+ooooooX. @@@@@@@",
+"@..XooooooXXXXXX.. @@@@@@",
+" .XXoooXXXX.....XX.. @@@@",
+"....XXooXXXXXXXXooXX.  @@",
+" ..XooooooooooXXXoooX.. @",
+"@  .XXooooooooooXXoooXX. ",
+"@@@ .Xoo+++++ooooooo+oo. ",
+"@@@ .Xooo+OO++oooooo+oo. ",
+"@  .XXoooo+OO+oooXoo+oo. ",
+" ..Xoooooo++O++ooXo+ooo. ",
+" XXooooXoooo++++ooooooo.@",
+" ..Xo+ooXXXoooooooXooXX.@",
+"@  .Xo+oooXXooooXoXXX.. @",
+"@@@.Xoo+ooooooXX.XoX.. @@",
+"@@@.XXo+oooooXX..XooX. @@",
+"@@@ .XooooooX...XoooX.. @",
+"@@@@ ..XXXX..XoooooX... @",
+"@@@@@ ......XoooooX..  @@",
+"@@@@@@@@@@  .XXXXX. @@@@@",
+"@@@@@@@@@@@@ ..... @@@@@@",
+"@@@@@@@@@@@@@     @@@@@@@"
+};

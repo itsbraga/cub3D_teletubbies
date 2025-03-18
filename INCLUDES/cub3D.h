@@ -6,7 +6,7 @@
 /*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/17 13:50:11 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/18 01:15:48 by pmateo           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,14 +203,20 @@ void		clear_img(t_img *img, size_t size_x, size_t size_y, int color);
 void		draw_line(t_img *img, t_point p0, t_point p1, int color);
 
 // RENDER/draw_texture.c
-int		apply_shadow_factor(int color, float shadow_factor);
-void	draw_vline_texture(int start_y, int end_y, int *tex_buffer, t_raycasting *r);
+int			apply_shadow_factor(int color, float shadow_factor);
+void		draw_vline_texture(int start_y, int end_y, int *tex_buffer, t_raycasting *r);
 
 // raycasting.c
 void		raycasting(t_data *d, t_player *player, t_raycasting *r);
 
 // collisions.c
 int			handle_collisions(t_data *data, t_player *player, t_point *new_player_pos);
+
+// weapons.c
+void		init_weapon(t_weapon *w, t_data *data);
+void		get_weapons(t_weapon *w);
+void		draw_weapon(t_game *game, t_weapon *w);
+void		render_weapon(t_game *game, t_weapon *w);
 
 // MINIMAP/create_viewport.c
 t_viewport	compute_viewport(t_game *game, t_minimap *minimap);
