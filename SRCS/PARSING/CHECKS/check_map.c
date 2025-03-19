@@ -6,12 +6,21 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 21:14:14 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/13 03:14:22 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/19 03:28:03 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
+/*
+	Validates if a line contains only valid map characters
+	@param line: string to check
+	@return: true if line contains only valid map characters, false otherwise
+	The function:
+	- Checks each character against VALID_MAP_CHARS (0,1, ,N,S,E,W)
+	- Allows newline characters
+	- Returns false and displays error if invalid character found
+*/
 bool	is_map_line(char *line)
 {
 	int	i;
@@ -29,6 +38,21 @@ bool	is_map_line(char *line)
 	return (true);
 }
 
+/*
+	Recursive flood fill algorithm to check map boundaries and enclosed spaces
+	@param y: current y coordinate being checked
+	@param x: current x coordinate being checked
+	@param height: total height of the map
+	@param width: total width of the map
+	@return: true if the map is properly enclosed, false if there are holes
+
+	The function:
+	- Marks visited spaces with 'F' (Filled)
+	- Checks all four adjacent cells recursively
+	- Stops at walls ('1') or previously filled cells ('F')
+	- Returns false if it reaches map boundaries or empty spaces
+	- Used to verify that the map is completely enclosed by walls
+*/
 static bool	__flood_fill(char **map, int y, int x, size_t height, size_t width)
 {
 	if (x < 0 || y < 0 || (size_t)x >= width || (size_t)y >= height
@@ -69,7 +93,18 @@ static char	**__duplicate_map(char **map, size_t height)
 	return (dup);
 }
 
-bool	map_fully_enclosed(char **map, size_t height, size_t width, t_point *pos)
+/*
+	Verifies if the map is completely enclosed by walls using flood fill
+	@param pos: starting position for flood fill (player position)
+	@return: true if map is properly enclosed, false if there are holes
+	The function:
+	- Creates a copy of the map for testing
+	- Performs flood fill from player position
+	- Cleans up allocated memory
+	- Returns the flood fill result
+*/
+bool	map_fully_enclosed(char **map, size_t height, size_t width,
+t_point *pos)
 {
 	char	**copy;
 	bool	result;

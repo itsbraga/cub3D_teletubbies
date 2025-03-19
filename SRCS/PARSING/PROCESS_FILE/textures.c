@@ -20,27 +20,23 @@ void	process_texture_lines(char *line, t_textures *tex)
 		tex->imgs[NO] = xpm_to_mlx_img(tex->north);
 		printf("tex->imgs[NO] img_ptr: %p\n", tex->imgs[NO].img_ptr);
 		s_data()->feature_filled++;
-		// printf(BOLD ORANGE "data->feature_filled: %u\n\n" RESET, s_data()->feature_filled);
 	}
 	else if (ft_strncmp(line, "SO", 2) == 0)
 	{
 		tex->imgs[SO] = xpm_to_mlx_img(tex->south);
 		printf("tex->imgs[SO] img_ptr: %p\n", tex->imgs[SO].img_ptr);
 		s_data()->feature_filled++;
-		// printf(BOLD ORANGE "data->feature_filled: %u\n\n" RESET, s_data()->feature_filled);
 	}
 	else if (ft_strncmp(line, "WE", 2) == 0)
 	{
 		tex->imgs[WE] = xpm_to_mlx_img(tex->west);
 		printf("tex->imgs[WE] img_ptr: %p\n", tex->imgs[WE].img_ptr);
 		s_data()->feature_filled++;
-		// printf(BOLD ORANGE "data->feature_filled: %u\n\n" RESET, s_data()->feature_filled);
 	}
 	else
 	{
 		tex->imgs[EA] = xpm_to_mlx_img(tex->east);
 		printf("tex->imgs[EA] img_ptr: %p\n", tex->imgs[EA].img_ptr);
 		s_data()->feature_filled++;
-		// printf(BOLD ORANGE "data->feature_filled: %u\n\n" RESET, s_data()->feature_filled);
 	}
 }

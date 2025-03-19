@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 00:10:05 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/18 00:44:06 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/18 21:30:58 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	render_2d(t_data *data)
 	clear_img(&mlx->img, WIN_WIDTH, WIN_HEIGHT, BLACK_PIX);
 	__draw_map2d(mlx, data->map);
 	draw_grid(mlx);
-	draw_player2d(mlx, s_game()->player);
+	draw_player_2d(mlx, s_game()->player);
 	__raycasting_2d(data, s_game()->player, s_game()->ray);
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr,
 		mlx->img.img_ptr, 0, 0);

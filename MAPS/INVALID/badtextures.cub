@@ -1,7 +1,7 @@
-NO ./textures/png/SandstoneskullsD.gif
-SO ./textures/png/Stone1D.gif
-WE ./textures/png/StoneUWHitlerL.gif
-EA ./textures/png/SteelwallL.gif
+NO ./TEXTURES/PNG/SandstoneskullsD.gif
+SO ./TEXTURES/PNG/Stone1D.gif
+WE ./TEXTURES/PNG/StoneUWHitlerL.gif
+EA ./TEXTURES/PNG/SteelwallL.gif
 
 F 128,128,128
 C 102,51,0

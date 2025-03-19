@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 20:57:10 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/13 01:05:26 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/19 03:28:08 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	process_color_lines(char *line, t_data *data)
 				rgb_array[1], rgb_array[2]);
 		printf(BOLD CYAN "data->floor_color: %u\n" RESET, data->floor_color);
 		data->feature_filled++;
-		// printf(BOLD ORANGE "data->feature_filled: %u\n\n" RESET, data->feature_filled);
 	}
 	else
 	{
@@ -43,9 +42,7 @@ void	process_color_lines(char *line, t_data *data)
 		data->ceiling_color = convert_rgb_into_uint(rgb_array[0],
 				rgb_array[1], rgb_array[2]);
 		printf(BOLD BLUE "data->ceiling_color: %u\n" RESET, data->ceiling_color);
-		// if (data->ceiling_color == 0)
 		data->feature_filled++;
-		// printf(BOLD ORANGE "data->feature_filled: %u\n\n" RESET, data->feature_filled);
 	}
 	free_array(rgb_array);
 }

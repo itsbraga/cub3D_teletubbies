@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_player.c                                      :+:      :+:    :+:   */
+/*   draw_player2d.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 00:12:20 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/18 00:15:33 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/18 21:30:58 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ static void	__fill_triangle(t_mlx *mlx, t_point p1, t_point p2, t_point p3, int 
     }
 }
 
-void	draw_player2d(t_mlx *mlx, t_player *player)
+void	draw_player_2d(t_mlx *mlx, t_player *player)
 {
 	int			L;
 	double		h;

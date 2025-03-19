@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/18 01:30:34 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/19 03:26:26 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ typedef enum e_game_state
 
 typedef struct s_point
 {
-	float		x;
-	float		y;
+	float	x;
+	float	y;
 }				t_point;
 
 typedef struct s_layer
@@ -85,15 +85,7 @@ typedef struct s_map
 	size_t		width;
 }				t_map;
 
-typedef struct s_triangle
-{
-	t_point		a;
-	t_point		b;
-	t_point		c;
-	float		theta;
-}				t_triangle;
-
-typedef struct	s_weapon
+typedef struct s_weapon
 {
 	int			id;
 	int			xpm_nb;
@@ -103,39 +95,37 @@ typedef struct	s_weapon
 	t_point		pos;
 }				t_weapon;
 
-typedef	struct	s_ennemy
+typedef	struct s_ennemy
 {
 	int 	id;
-	t_img 	*sprites;
-	float 	hp;
+	t_img	*sprites;
+	float	hp;
 	// behaviour struct
 }				t_ennemy;
-
 
 typedef struct s_player
 {
 	int			dir;
 	t_point		pos;
 	t_point		move;
-	// int			pitch; // garder si mouse_y OK
 }				t_player;
 
 typedef struct s_raycasting
 {
-	t_point			h_ray_inter;
-	t_point			v_ray_inter;
-	t_point			h_offset;
-	t_point			v_offset;
-	unsigned int	curr_ray;
-	float			dist_wall;
-	int				wall_h;
-	int				tex_x;
-	float			step_tex_y;
-	float			off_tex_y;
-	float			shadow_factor;
-	bool			vertical_hit;
-	unsigned int	fov;
-	float			player_rad;
+	t_point		h_ray_inter;
+	t_point		v_ray_inter;
+	t_point		h_offset;
+	t_point		v_offset;
+	uint32_t	curr_ray;
+	float		dist_wall;
+	int			wall_h;
+	int			tex_x;
+	float		step_tex_y;
+	float		off_tex_y;
+	float		shadow_factor;
+	bool		vertical_hit;
+	uint32_t	fov;
+	float		player_rad;
 }				t_raycasting;
 
 typedef	struct s_keys_event
@@ -145,7 +135,7 @@ typedef	struct s_keys_event
 
 typedef struct s_textures
 {
-	char	*north; // remplacer par char *path
+	char	*north;
 	char	*south;
 	char	*west;
 	char	*east;
@@ -154,13 +144,13 @@ typedef struct s_textures
 
 typedef struct s_data
 {
-	t_map			*map;
-	t_textures		*textures;
-	t_weapon		*weapon;
-	t_ennemy		*ennemy;
-	unsigned int	floor_color;
-	unsigned int	ceiling_color;
-	unsigned int	feature_filled;
+	t_map		*map;
+	t_textures	*textures;
+	uint32_t	floor_color;
+	uint32_t	ceiling_color;
+	uint32_t	feature_filled;
+	t_weapon	*weapon;
+	t_ennemy	*ennemy;
 }				t_data;
 
 typedef struct s_viewport
@@ -171,7 +161,31 @@ typedef struct s_viewport
 	int		pixel_height;
 	int		offset_x; // decalage pour centrer la carte
 	int		offset_y;
+	int		player_tile_x;
+	int		player_tile_y;
+	int		perimeter;
+	int		start_x;
+	int		start_y;
+	int		end_x;
+	int		end_y;
+	int		zone_width;
+	int		zone_height;
 }				t_viewport;
+
+typedef struct s_triangle
+{
+	t_point		a;
+	t_point		b;
+	t_point		c;
+	float		theta;
+	double		slope1;
+	double		slope2;
+	double		slope3;
+	double		curx1;
+	double		curx2;
+	double		cur_slope1;
+	double		cur_slope2;
+}				t_triangle;
 
 typedef struct s_minimap
 {
@@ -193,7 +207,7 @@ typedef struct s_game
 	t_keys			*keys;
 	t_minimap		*mmap;
 	t_mlx			*mlx;
-	// t_data			*data;
+	t_data			*data;
 }				t_game;
 
 #endif

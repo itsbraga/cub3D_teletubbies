@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   singletons.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/17 01:01:31 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/18 01:31:25 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/19 01:05:09 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,7 @@ t_game	*s_game(void)
 		instance->mmap = yama(CREATE, NULL, sizeof(t_minimap));
 		secure_malloc(instance->mmap, true);
 		instance->mlx = NULL;
-		// instance->data = NULL;
-	}
-	return (instance);
-}
-
-t_mlx	*s_mlx(void)
-{
-	static t_mlx	*instance = NULL;
-	
-	if (instance == NULL)
-	{
-		instance = yama(CREATE, NULL, sizeof(t_mlx));
-		secure_malloc(instance, true);
-		instance->mlx_ptr = NULL;
-		instance->win_ptr = NULL;
-		ft_bzero(&instance->img, sizeof(t_img));
+		instance->data = NULL;
 	}
 	return (instance);
 }
@@ -73,6 +58,21 @@ t_data	*s_data(void)
 		instance->floor_color = 0;
 		instance->ceiling_color = 0;
 		instance->feature_filled = 0;
+	}
+	return (instance);
+}
+
+t_mlx	*s_mlx(void)
+{
+	static t_mlx	*instance = NULL;
+	
+	if (instance == NULL)
+	{
+		instance = yama(CREATE, NULL, sizeof(t_mlx));
+		secure_malloc(instance, true);
+		instance->mlx_ptr = NULL;
+		instance->win_ptr = NULL;
+		ft_bzero(&instance->img, sizeof(t_img));
 	}
 	return (instance);
 }

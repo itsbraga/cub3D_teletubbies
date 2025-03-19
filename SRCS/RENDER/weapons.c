@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   weapons.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 21:58:18 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/18 01:21:15 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/19 03:28:15 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "cub3D.h"
+#include "cub3D.h"
 
 void	init_weapon(t_weapon *w, t_data *data)
 {
@@ -40,7 +40,7 @@ void	draw_weapon(t_game *game, t_weapon *w)
 	
 	mlx = game->mlx;
 	mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, w->sprites[0].img_ptr, 
-			WIN_WIDTH / 2, WIN_HEIGHT / 2);
+		WIN_WIDTH / 2, WIN_HEIGHT / 2);
 }
 
 void	render_weapon(t_game *game, t_weapon *w)

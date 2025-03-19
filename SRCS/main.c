@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:30:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/18 00:55:01 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/19 01:09:14 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	print_map_debug(t_map *map, const char *name)
 
 int	main(int argc, char **argv)
 {
-	// (void)argv;
 	t_data	*data;
 	t_game	*game;
 	t_mlx	*mlx;
@@ -45,7 +44,7 @@ int	main(int argc, char **argv)
 	game = s_game();
 	mlx = s_mlx();
 	init_structs(data, game, mlx);
-	if (parsing(argv[1], data) == FAILURE)
+	if (parsing(argv[1], data, game) == FAILURE)
 	{
 		ft_printf(STDERR_FILENO, BOLD RED ERR RESET);
 		clean_exit(FAILURE);

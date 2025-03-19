@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/18 01:09:23 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/18 23:48:06 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,7 +214,7 @@ void	draw_ceiling(float wall_h, t_raycasting *r)
 		shadow_factor = 1 - ((float)curr_y / (float)(WIN_HEIGHT / 2));
 		if (shadow_factor < 0.1)
 			shadow_factor = 0.1;
-			// printf("%s | shadow factor = %f\n", __func__, shadow_factor);
+		// printf("%s | shadow factor = %f\n", __func__, shadow_factor);
 		color = apply_shadow_factor((int)s_data()->ceiling_color, shadow_factor);
 		my_pixel_put_to_img(img, color, curr_x, curr_y);
 		curr_y++;

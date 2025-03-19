@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/04 15:20:42 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/13 03:35:36 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/18 21:29:28 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ size_t	get_longest_line(char **map2d, size_t height)
 	return (max);
 }
 
-unsigned int	convert_rgb_into_uint(char *red, char *green, char *blue)
+uint32_t	convert_rgb_into_uint(char *red, char *green, char *blue)
 {
 	int	result;
 	int	r;
@@ -62,5 +62,5 @@ unsigned int	convert_rgb_into_uint(char *red, char *green, char *blue)
 	result = (r << 16);
 	result = result | (g << 8);
 	result = result | (b);
-	return ((unsigned int)result);
+	return ((uint32_t)result);
 }

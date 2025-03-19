@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/18 01:30:04 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/19 03:26:22 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,40 +41,40 @@
 \**********************/
 
 // utils.c
-bool			is_empty_line(char *line);
-size_t			get_longest_line(char **map2d, size_t height);
-unsigned int	convert_rgb_into_uint(char *red, char *green, char *blue);
+bool		is_empty_line(char *line);
+size_t		get_longest_line(char **map2d, size_t height);
+uint32_t	convert_rgb_into_uint(char *red, char *green, char *blue);
 
 // CHECKS/check_arg.c
-int				check_cub_file(char *arg);
+int			check_cub_file(char *arg);
 
 // CHECKS/check_xpm.c
-short			check_textures_paths(t_textures *tex);
+short		check_textures_paths(t_textures *tex);
 
 // CHECKS/check_map.c
-bool			is_map_line(char *line);
-bool			map_fully_enclosed(char **map, size_t height, size_t width,
+bool		is_map_line(char *line);
+bool		map_fully_enclosed(char **map, size_t height, size_t width,
 	t_point *pos);
 
 // CHECKS/player_dir.c
-void			get_player_direction(t_map *map, t_player *player);
+void		get_player_direction(t_map *map, t_player *player);
 
 // PROCESS_FILE/textures.c
-short			check_textures_paths(t_textures *tex);
-void			process_texture_lines(char *line, t_textures *tex);
+short		check_textures_paths(t_textures *tex);
+void		process_texture_lines(char *line, t_textures *tex);
 
 // PROCESS_FILE/rgb.c
-void			process_color_lines(char *line, t_data *data);
+void		process_color_lines(char *line, t_data *data);
 
 // PROCESS_FILE/map.c
-char			**normalize_map2d(char **map, size_t height, size_t width);
-void			fill_map2d_array(t_map *map, char *line);
+char		**normalize_map2d(char **map, size_t height, size_t width);
+void		fill_map2d_array(t_map *map, char *line);
 
 // PROCESS_FILE/get_file_data.c
-void			get_file_data(int fd, t_data *data);
+void		get_file_data(int fd, t_data *data);
 
 // parsing.c
-short			parsing(char *arg, t_data *data);
+short		parsing(char *arg, t_data *data, t_game *game);
 
 /**********************\
  *	UTILS
@@ -134,9 +134,9 @@ void		*yama(int flag, void *ptr, size_t size);
 \**********************/
 
 // singletons.c
-t_mlx		*s_mlx(void);
-t_game		*s_game(void);
 t_data		*s_data(void);
+t_game		*s_game(void);
+t_mlx		*s_mlx(void);
 
 // init_mlx.c
 void		init_mlx(t_mlx *mlx, t_game *game);
@@ -146,10 +146,10 @@ void		init_textures(t_textures *tex, t_data *data);
 void		fill_textures_paths(char *line, t_textures *tex);
 
 // init_minimap.c
-int			init_minimap_img(t_mlx *mlx, t_minimap *mini);
+void		init_minimap(t_minimap *mmap, t_game *game);
 
 // init_structs.c
-void		init_map2(t_map *map, char *path_to_file, int fd, t_data *data);
+void		init_map(t_map *map, char *path_to_file, int fd, t_data *data);
 void		init_structs(t_data *data, t_game *game, t_mlx *mlx);
 
 /**********************\
@@ -170,8 +170,12 @@ void		rotate_rightward(t_game *game);
 void		move_player(t_game *game, t_keys *key);
 void		reset_move(t_player *player);
 
+// collisions.c
+int			handle_collisions(t_data *data, t_player *player, t_point *new_ppos);
+
 // mouse.c
-void		set_mouse_hooks(t_mlx *mlx, t_game *game);
+int			title_screen_mouse(int button, int x, int y, t_game *game);
+int			mouse_motion(int x, int y, t_game *game);
 
 // setter.c
 void		set_hooks(t_mlx *mlx, t_game *game);
@@ -210,9 +214,6 @@ void		draw_vline_texture(int start_y, int end_y, int *tex_buffer,
 // raycasting.c
 void		raycasting(t_data *d, t_player *player, t_raycasting *r);
 
-// collisions.c
-int			handle_collisions(t_data *data, t_player *player, t_point *new_player_pos);
-
 // weapons.c
 void		init_weapon(t_weapon *w, t_data *data);
 void		get_weapons(t_weapon *w);
@@ -226,32 +227,33 @@ int			render_frame(t_game *game);
  *	MINIMAP
 \**********************/
 
+// triangle_utils.c
+void		init_triangle(t_triangle *tr, t_point a, t_point b, t_point c);
+void		draw_hline(t_minimap *mmap, t_triangle *tr, int start_y, int end_y,
+	int color);
+
 // draw_player.c
 void		draw_player(t_minimap *mmap, t_player *player);
 
 // viewport.c
-// t_viewport	compute_viewport(t_data *data, t_minimap *mmap);
-t_viewport	compute_viewport(t_minimap *mmap, int zone_width, int zone_height);
+t_viewport	compute_viewport(t_minimap *mmap);
 void		draw_player_in_viewport(t_game *game, t_minimap *mmap);
 
-// init_img.c
-int			init_minimap_img(t_mlx *mlx, t_minimap *mmap);
-
-// draw.c
-void		draw_minimap(t_minimap *mmap, t_map *map);
-
-// minimap.c
+// render_minimap.c
 void		render_minimap(t_game *game, t_minimap *mmap);
 
 /**********************\
  *	DEBUG
 \**********************/
 
-void	inter_hline(t_data *d, t_player *player, t_raycasting *r, float ray_rad);
-void	inter_vline(t_data *d, t_player *player, t_raycasting *r, float ray_rad);
-void	find_closest_inter(t_player *player, t_raycasting *r, t_point *closest_inter);
-void	draw_player2d(t_mlx *mlx, t_player *player);
-void	draw_grid(t_mlx *mlx);
-int		render_2d(t_data *data);
+void		inter_hline(t_data *d, t_player *player, t_raycasting *r,
+	float ray_rad);
+void		inter_vline(t_data *d, t_player *player, t_raycasting *r,
+	float ray_rad);
+void		find_closest_inter(t_player *player, t_raycasting *r,
+	t_point *closest_inter);
+void		draw_player_2d(t_mlx *mlx, t_player *player);
+void		draw_grid(t_mlx *mlx);
+int			render_2d(t_data *data);
 
 #endif

@@ -3,16 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   player_dir.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:43:21 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/18 01:12:17 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/18 21:54:39 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-// func assigner valeur du define de la direction du joueur et 
+static int	__set_player_direction(char c, t_player *player)
+{
+	if (c == 'N')
+		return (player->dir = N);
+	else if (c == 'S')
+		return (player->dir = S);
+	else if (c == 'E')
+		return (player->dir = E);
+	else
+		return (player->dir = W);
+}
 
 void	get_player_direction(t_map *map, t_player *player)
 {
@@ -31,10 +41,10 @@ void	get_player_direction(t_map *map, t_player *player)
 		{
 			if (ft_strchr(PLAYER_DIR, map->map2d[i][j]) != NULL)
 			{
-				player->pos.x = (float)j;// + 0.5; // 0.5: decaler legerement (collisions)
-				player->pos.y = (float)i;// + 0.5;
-				player->dir = map->map2d[i][j]; // remplacer par la fonction ci-dessus
-				printf("player dir: %d\n", player->dir);
+				// Adjust the offset to keep the player away from the walls
+				player->pos.x = (float)j + 0.4;
+				player->pos.y = (float)i + 0.4;
+				player->dir = __set_player_direction(map->map2d[i][j], player);
 				player_count++;
 			}
 			j++;
