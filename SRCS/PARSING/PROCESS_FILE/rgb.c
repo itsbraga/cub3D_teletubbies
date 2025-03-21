@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rgb.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 20:57:10 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/19 03:28:08 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/21 02:55:58 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,19 +29,15 @@ void	process_color_lines(char *line, t_data *data)
 	if (line[0] == 'F')
 	{
 		rgb_array = __rgb_to_convert(line, rgb_array);
-		printf(BOLD CYAN "RGB floor: %s %s %s" RESET, rgb_array[0], rgb_array[1], rgb_array[2]);
 		data->floor_color = convert_rgb_into_uint(rgb_array[0],
 				rgb_array[1], rgb_array[2]);
-		printf(BOLD CYAN "data->floor_color: %u\n" RESET, data->floor_color);
 		data->feature_filled++;
 	}
 	else
 	{
 		rgb_array = __rgb_to_convert(line, rgb_array);
-		printf(BOLD BLUE "RGB ceiling: %s %s %s" RESET, rgb_array[0], rgb_array[1], rgb_array[2]);
 		data->ceiling_color = convert_rgb_into_uint(rgb_array[0],
 				rgb_array[1], rgb_array[2]);
-		printf(BOLD BLUE "data->ceiling_color: %u\n" RESET, data->ceiling_color);
 		data->feature_filled++;
 	}
 	free_array(rgb_array);

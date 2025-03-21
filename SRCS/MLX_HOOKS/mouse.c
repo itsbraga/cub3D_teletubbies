@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mouse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/03 19:44:33 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/18 23:02:06 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/20 21:16:35 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	title_screen_mouse(int button, int x, int y, t_game *game)
 				+ start_button.height))
 		{
 			game->state = GAME;
+			toggle_mouse_visibility(game->mlx, game->state);
 		}
 	}
 	return (SUCCESS);

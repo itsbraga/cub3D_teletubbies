@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 21:01:29 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/19 01:06:24 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/21 04:47:16 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ static void	__bonus_player_moves(t_data *data, t_player *player)
 {
 	t_point	new_ppos;
 
-	new_ppos.x = player->pos.x;
-	new_ppos.y = player->pos.x;
+	new_ppos = (t_point){player->pos.x, player->pos.y};
 	if (handle_collisions(data, player, &new_ppos) == FAILURE)
 		return ;
 	player->pos.x = roundf(new_ppos.x);
@@ -41,9 +40,9 @@ void	move_player(t_game *game, t_keys *key)
 	move_array	functions[7];
 	t_player	*player;
 	
-	i = 0;
 	player = game->player;
 	__init_move_array(functions);
+	i = 0;
 	while (i < 6)
 	{
 		if (key->key_array[i] == 1)

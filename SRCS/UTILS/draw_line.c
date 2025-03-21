@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_line.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/12 16:04:48 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/16 20:17:36 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/21 04:03:41 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,8 +92,8 @@ static void	__draw_vline(t_img *img, t_point p0, t_point p1, int color)
 
 void	draw_line(t_img *img, t_point p0, t_point p1, int color)
 {
-	if (valid_point(p0, WIN_WIDTH, WIN_HEIGHT) == false
-		|| valid_point(p1, WIN_WIDTH, WIN_HEIGHT) == false)
+	if (is_valid_point(p0, WIN_WIDTH, WIN_HEIGHT) == false
+		|| is_valid_point(p1, WIN_WIDTH, WIN_HEIGHT) == false)
 		return (err_msg(NULL, "Point called is out of map"));
 	if (abs((int)p1.x - (int)p0.x) > abs((int)p1.y - (int)p0.y))
 		__draw_hline(img, p0, p1, color);

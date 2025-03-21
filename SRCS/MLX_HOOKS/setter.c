@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:20:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/18 23:06:12 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/21 04:41:40 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,7 @@ static int	__set_keyrelease(int keycode, t_game *game)
 static int	__set_keypress(int keycode, t_game *game)
 {
 	if (game->state == TITLE_SCREEN)
-	{
-		if (keycode == XK_Escape)
-			exit_game(s_mlx(), SUCCESS);
-		else if (keycode == XK_Return)
-			return (game->state = GAME, SUCCESS);
-		else
-			return (FAILURE);
-	}
+		return (set_title_screen_keys(keycode, game));
 	if (keycode == XK_Escape)
 		exit_game(s_mlx(), SUCCESS);
 	if (keycode == W_KEY)
@@ -54,7 +47,18 @@ static int	__set_keypress(int keycode, t_game *game)
 		game->keys->key_array[_LEFT] = 1;
 	if (keycode == XK_Right)
 		game->keys->key_array[_RIGHT] = 1;
+	#if BONUS
+		set_minimap_zoom_factor(keycode, game); // pas encore implementé
+	#endif
 	return (SUCCESS);
+}
+
+void	toggle_mouse_visibility(t_mlx *mlx, t_game_state state)
+{
+	if (state == TITLE_SCREEN)
+		mlx_mouse_show(mlx->mlx_ptr, mlx->win_ptr);
+	else
+		mlx_mouse_hide(mlx->mlx_ptr, mlx->win_ptr);
 }
 
 void	set_hooks(t_mlx *mlx, t_game *game)
@@ -63,10 +67,9 @@ void	set_hooks(t_mlx *mlx, t_game *game)
 	mlx_hook(mlx->win_ptr, DestroyNotify, StructureNotifyMask, &exit_game, mlx);
 	mlx_hook(mlx->win_ptr, KeyPress, KeyPressMask, &__set_keypress, game);
 	mlx_hook(mlx->win_ptr, KeyRelease, KeyReleaseMask, &__set_keyrelease, game);
-	// if (BONUS)
-	// {
-	// 	mlx_mouse_hide(mlx->mlx_ptr, mlx->win_ptr);
-	// 	mlx_hook(mlx->win_ptr, MotionNotify, PointerMotionMask, &mouse_motion,
-	// 		game);
-	// }
+	#if BONUS
+		toggle_mouse_visibility(mlx, game->state);
+		mlx_hook(mlx->win_ptr, MotionNotify, PointerMotionMask, &mouse_motion,
+			game);
+	#endif
 }

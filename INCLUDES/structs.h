@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/19 03:26:26 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/20 23:49:47 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,42 +155,56 @@ typedef struct s_data
 
 typedef struct s_viewport
 {
-	float	scale_x;
+	float	scale_x; // zoom factor
 	float	scale_y;
-	int		pixel_width;
+	int		pixel_width; // window width
 	int		pixel_height;
-	int		offset_x; // decalage pour centrer la carte
+	int		offset_x; // offset to center the map
 	int		offset_y;
-	int		player_tile_x;
+	int		player_tile_x; // player coordinates on minimap
 	int		player_tile_y;
-	int		perimeter;
-	int		start_x;
+	int		perimeter; // visible area on minimap
+	int		start_x; // starting coordinates of visible area
 	int		start_y;
-	int		end_x;
+	int		end_x; // ending coordinates of visible area
 	int		end_y;
-	int		zone_width;
+	int		zone_width; // width of visible area
 	int		zone_height;
+	float	rotation_angle; // minimap rotation angle
+	float	zoom_factor; // minimap zoom factor
 }				t_viewport;
+
+typedef struct s_trigo
+{
+	float	cos_theta;
+	float	sin_theta;
+	float	cos_theta_plus_pi2;
+	float	sin_theta_plus_pi2;
+	float	cos_theta_minus_pi2;
+	float	sin_theta_minus_pi2;
+}				t_trigo;
 
 typedef struct s_triangle
 {
 	t_point		a;
 	t_point		b;
 	t_point		c;
-	float		theta;
-	double		slope1;
+	float		theta; // line angle
+	double		slope1; // line slope (= pente)
 	double		slope2;
 	double		slope3;
-	double		curx1;
-	double		curx2;
-	double		cur_slope1;
-	double		cur_slope2;
+	double		curr_x1; // coordinates of point 1
+	double		curr_x2; // coordinates of point 2
+	double		curr_slope1;
+	double		curr_slope2;
+	t_trigo		trig;
 }				t_triangle;
 
 typedef struct s_minimap
 {
 	t_viewport	vp;
-	t_img		img;
+	t_img		img; // shown on screen
+	t_img		cache; // cached image
 	t_point		pos;
 	float		ratio;
 	int			width;

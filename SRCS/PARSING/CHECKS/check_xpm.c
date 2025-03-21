@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_xpm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 21:26:18 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/13 00:59:53 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/21 03:40:19 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,7 @@ static bool __is_not_directory(const char *path)
 		close(fd);
 		return (false);
 	}
-	else
-		return (true);
+	return (true);
 }
 
 static void	__check_open_error(const char *arg)
@@ -52,7 +51,7 @@ static void	__check_open_error(const char *arg)
 		err_msg(NULL, strerror(errno));
 }
 
-static short	__check_xpm_file(char *arg)
+static int	__check_xpm_file(char *arg)
 {
 	int	fd;
 
@@ -71,13 +70,15 @@ static short	__check_xpm_file(char *arg)
 	return (SUCCESS);
 }
 
-short	check_textures_paths(t_textures *tex)
+int	check_textures_paths(t_textures *tex)
 {
-	if (__check_xpm_file(tex->north) == SUCCESS
-		|| __check_xpm_file(tex->south) == SUCCESS
-		|| __check_xpm_file(tex->west) == SUCCESS
-		|| __check_xpm_file(tex->east) == SUCCESS)
-		return (SUCCESS);
-	else
+	if (__check_xpm_file(tex->north) == FAILURE)
 		return (FAILURE);
+	if (__check_xpm_file(tex->south) == FAILURE)
+		return (FAILURE);
+	if (__check_xpm_file(tex->west) == FAILURE)
+		return (FAILURE);
+	if (__check_xpm_file(tex->east) == FAILURE)
+		return (FAILURE);
+	return (SUCCESS);
 }

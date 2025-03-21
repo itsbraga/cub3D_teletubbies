@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   render_minimap.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 20:39:37 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/19 03:28:19 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/21 00:26:08 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,11 +65,11 @@ static void	__draw_visible_tiles(t_minimap *mmap, t_map *map)
 
 	center_x = (int)(s_game()->player->pos.x / TILE_SIZE);
 	center_y = (int)(s_game()->player->pos.y / TILE_SIZE);
-	y = center_y - mmap->vp.perimeter;
-	while (y <= center_y + mmap->vp.perimeter)
+	y = center_y - mmap->vp.perimeter - 1;
+	while (++y <= center_y + mmap->vp.perimeter)
 	{
-		x = center_x - mmap->vp.perimeter;
-		while (x <= center_x + mmap->vp.perimeter)
+		x = center_x - mmap->vp.perimeter - 1;
+		while (++x <= center_x + mmap->vp.perimeter)
 		{
 			if (x >= 0 && y >= 0 && x < (int)map->width && y < (int)map->height)
 			{
@@ -80,9 +80,7 @@ static void	__draw_visible_tiles(t_minimap *mmap, t_map *map)
 					__draw_tile(mmap, tile_in_viewport);
 				}
 			}
-			x++;
 		}
-		y++;
 	}
 }
 
@@ -124,8 +122,13 @@ static void	__draw_minimap(t_minimap *mmap, t_map *map)
 
 void	render_minimap(t_game *game, t_minimap *mmap)
 {
-	clear_img(&mmap->img, mmap->img.width, mmap->img.height, GRAY_PIX);
+	t_img	*temp;
+	clear_img(&mmap->cache, mmap->width, mmap->height, GRAY_PIX);
 	__draw_minimap(mmap, game->data->map);
+	draw_player_in_viewport(game, mmap);
 	mlx_put_image_to_window(game->mlx->mlx_ptr, game->mlx->win_ptr,
-		mmap->img.img_ptr, mmap->pos.x, mmap->pos.y);
+		mmap->cache.img_ptr, mmap->pos.x, mmap->pos.y);
+	temp = &mmap->img;
+	mmap->img = mmap->cache;
+	mmap->cache = *temp;
 }

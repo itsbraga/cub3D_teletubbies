@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3D.h"
+#include "debug.h"
 
 /*
 	Sorts the three points of a triangle by their Y coordinates
@@ -92,7 +92,7 @@ static void	__compute_slopes(t_triangle *tr)
 	- Updates intersection points for next Y level using pre-calculated slopes
 	This creates a filled triangle one horizontal line at a time
 */
-void	draw_hline(t_minimap *mmap, t_triangle *tr, int start_y, int end_y,
+void	draw_hline_2d(t_mlx *mlx, t_triangle *tr, int start_y, int end_y,
 int color)
 {
 	int	x1;
@@ -101,8 +101,8 @@ int color)
 
 	while (start_y < end_y)
 	{
-		x1 = (int)round(tr->curx1);
-		x2 = (int)round(tr->curx2);
+		x1 = (int)round(tr->curr_x1);
+		x2 = (int)round(tr->curr_x2);
 		if (x1 > x2)
 		{
 			temp = x1;
@@ -111,26 +111,26 @@ int color)
 		}
 		while (x1 <= x2)
 		{
-			my_pixel_put_to_img(&mmap->img, color, x1, start_y);
+			my_pixel_put_to_img(&mlx->img, color, x1, start_y);
 			x1++;
 		}
-		tr->curx1 += tr->cur_slope1;
-		tr->curx2 += tr->cur_slope2;
+		tr->curr_x1 += tr->curr_slope1;
+		tr->curr_x2 += tr->curr_slope2;
 		start_y++;
 	}
 }
 
-void	init_triangle(t_triangle *tr, t_point a, t_point b, t_point c)
+void	init_triangle_2d(t_triangle *tr, t_point a, t_point b, t_point c)
 {
 	tr->a = a;
 	tr->b = b;
 	tr->c = c;
 	__sort_points_by_y(tr);
 	__compute_slopes(tr);
-	tr->curx1 = tr->a.x;
-	tr->curx2 = tr->a.x;
-	tr->cur_slope1 = tr->slope1;
-	tr->cur_slope2 = tr->slope2;
+	tr->curr_x1 = tr->a.x;
+	tr->curr_x2 = tr->a.x;
+	tr->curr_slope1 = tr->slope1;
+	tr->curr_slope2 = tr->slope2;
 }
 /*
 	(*) Rasterization: Process of converting vector shapes (like triangles)

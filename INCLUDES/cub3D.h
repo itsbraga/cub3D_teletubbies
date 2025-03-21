@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/19 03:26:22 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/21 04:03:41 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@
 # include "structs.h"
 # include "defines.h"
 # include "colors.h"
+# include "debug.h"
 
 /**********************\
  *	PARSING
@@ -49,32 +50,31 @@ uint32_t	convert_rgb_into_uint(char *red, char *green, char *blue);
 int			check_cub_file(char *arg);
 
 // CHECKS/check_xpm.c
-short		check_textures_paths(t_textures *tex);
+int			check_textures_paths(t_textures *tex);
 
 // CHECKS/check_map.c
-bool		is_map_line(char *line);
-bool		map_fully_enclosed(char **map, size_t height, size_t width,
-	t_point *pos);
+bool		flood_fill(char **map, int y, int x, size_t height, size_t width);
+char		**normalize_map_for_flood(char **map, size_t height, size_t width);
 
-// CHECKS/player_dir.c
+// CHECKS/check_player.c
 void		get_player_direction(t_map *map, t_player *player);
 
 // PROCESS_FILE/textures.c
-short		check_textures_paths(t_textures *tex);
+int			check_textures_paths(t_textures *tex);
 void		process_texture_lines(char *line, t_textures *tex);
 
 // PROCESS_FILE/rgb.c
 void		process_color_lines(char *line, t_data *data);
 
 // PROCESS_FILE/map.c
-char		**normalize_map2d(char **map, size_t height, size_t width);
+char		**normalize_map(char **map, size_t height, size_t width);
 void		fill_map2d_array(t_map *map, char *line);
 
 // PROCESS_FILE/get_file_data.c
 void		get_file_data(int fd, t_data *data);
 
 // parsing.c
-short		parsing(char *arg, t_data *data, t_game *game);
+int			parsing(char *arg, t_data *data, t_game *game);
 
 /**********************\
  *	UTILS
@@ -90,7 +90,7 @@ void		my_free(void **to_free);
 
 // draw_utils.c
 void		swap_point(t_point *p0, t_point *p1);
-bool		valid_point(t_point point, size_t win_width, size_t win_height);
+bool		is_valid_point(t_point point, size_t win_width, size_t win_height);
 
 // formulas.c
 float		degree_to_radian(int degree);
@@ -177,7 +177,12 @@ int			handle_collisions(t_data *data, t_player *player, t_point *new_ppos);
 int			title_screen_mouse(int button, int x, int y, t_game *game);
 int			mouse_motion(int x, int y, t_game *game);
 
+// additionnal_keys.c
+int			set_title_screen_keys(int keycode, t_game *game);
+int			set_minimap_zoom_factor(int keycode, t_game *game);
+
 // setter.c
+void		toggle_mouse_visibility(t_mlx *mlx, t_game_state state);
 void		set_hooks(t_mlx *mlx, t_game *game);
 
 /**********************\
@@ -232,7 +237,11 @@ void		init_triangle(t_triangle *tr, t_point a, t_point b, t_point c);
 void		draw_hline(t_minimap *mmap, t_triangle *tr, int start_y, int end_y,
 	int color);
 
-// draw_player.c
+// draw_triangle.c
+void		fill_triangle(t_minimap *mmap, t_point a, t_point b, t_point c,
+int color);
+
+// compute_n_draw_player.c
 void		draw_player(t_minimap *mmap, t_player *player);
 
 // viewport.c
@@ -241,19 +250,5 @@ void		draw_player_in_viewport(t_game *game, t_minimap *mmap);
 
 // render_minimap.c
 void		render_minimap(t_game *game, t_minimap *mmap);
-
-/**********************\
- *	DEBUG
-\**********************/
-
-void		inter_hline(t_data *d, t_player *player, t_raycasting *r,
-	float ray_rad);
-void		inter_vline(t_data *d, t_player *player, t_raycasting *r,
-	float ray_rad);
-void		find_closest_inter(t_player *player, t_raycasting *r,
-	t_point *closest_inter);
-void		draw_player_2d(t_mlx *mlx, t_player *player);
-void		draw_grid(t_mlx *mlx);
-int			render_2d(t_data *data);
 
 #endif

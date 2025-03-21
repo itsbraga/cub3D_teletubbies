@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:07:04 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/16 19:42:36 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/20 23:40:14 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ static int	__init_mlx_img(t_mlx *mlx)
 	if (mlx->img.addr == NULL)
 	{
 		free_mlx(mlx);
-		return (err_msg("minilibX", ERR_ADDR), FAILURE);
+		err_msg("minilibX", ERR_ADDR);
+		return (FAILURE);
 	}
 	return (SUCCESS);
 }

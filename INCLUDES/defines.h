@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: pmateo <pmateo@student.42.fr>              +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/18 01:31:05 by pmateo           ###   ########.fr       */
+/*   Updated: 2025/03/21 04:11:51 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,6 @@
 
 #ifndef BONUS
 # define BONUS 1
-#endif
-
-#ifndef MAX
-# define MAX(a, b) ((a) > (b) ? (a) : (b))
-#endif
-
-#ifndef MIN
-# define MIN(a, b) ((a) < (b) ? (a) : (b))
 #endif
 
 /**************************\
@@ -73,6 +65,7 @@
 # define ERR_MLX "Cannot initialize minilibX"
 # define ERR_INIT_IMG "Cannot initialize minilibX image"
 # define ERR_INIT_MMAP_IMG "\033[38;2;211;211;255m[minimap]\033[0m Cannot initialize minilibX image"
+# define ERR_INIT_MMAP_CACHE "\033[38;2;211;211;255m[minimap]\033[0m Cannot initialize minilibX cache"
 # define ERR_WIN "Cannot create new window"
 # define ERR_IMG "Cannot create new image"
 # define ERR_ADDR "Cannot find image address"
@@ -92,6 +85,7 @@
 // Player direction
 # define ERR_PLAYER "Map has no player position"
 # define ERR_NB_PLAYER "Map has more than one player"
+# define ERR_PLAYER_POS "Invalid player position"
 
 // Title screen
 # define ERR_BG_IMG "Cannot load background image"
@@ -107,8 +101,6 @@
 
 # define DEL_IMG "[minilibX] Image and window destroyed\n"
 # define MLX_EXIT "[minilibX] All elements have been destroyed\n"
-
-# define VALID_MAP_CHARS "01 NSEW"
 
 /**************************\
  * PLAYER MOVEMENTS
