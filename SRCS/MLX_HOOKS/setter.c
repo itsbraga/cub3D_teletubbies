@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setter.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/04 20:20:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/21 04:41:40 by marvin           ###   ########.fr       */
+/*   Updated: 2025/03/21 21:11:51 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,22 +48,15 @@ static int	__set_keypress(int keycode, t_game *game)
 	if (keycode == XK_Right)
 		game->keys->key_array[_RIGHT] = 1;
 	#if BONUS
-		set_minimap_zoom_factor(keycode, game); // pas encore implementé
+		set_minimap_zoom_factor_keys(keycode, game); // pas encore implementé
 	#endif
 	return (SUCCESS);
 }
 
-void	toggle_mouse_visibility(t_mlx *mlx, t_game_state state)
-{
-	if (state == TITLE_SCREEN)
-		mlx_mouse_show(mlx->mlx_ptr, mlx->win_ptr);
-	else
-		mlx_mouse_hide(mlx->mlx_ptr, mlx->win_ptr);
-}
-
 void	set_hooks(t_mlx *mlx, t_game *game)
 {
-	mlx_mouse_hook(mlx->win_ptr, &title_screen_mouse, game);
+	if (game->state == TITLE_SCREEN)
+		mlx_mouse_hook(mlx->win_ptr, &title_screen_mouse, game);
 	mlx_hook(mlx->win_ptr, DestroyNotify, StructureNotifyMask, &exit_game, mlx);
 	mlx_hook(mlx->win_ptr, KeyPress, KeyPressMask, &__set_keypress, game);
 	mlx_hook(mlx->win_ptr, KeyRelease, KeyReleaseMask, &__set_keyrelease, game);

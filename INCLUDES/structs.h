@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/20 23:49:47 by marvin           ###   ########.fr       */
+/*   Updated: 2025/03/21 23:54:29 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,10 +118,12 @@ typedef struct s_raycasting
 	t_point		v_offset;
 	uint32_t	curr_ray;
 	float		dist_wall;
-	int			wall_h;
+	int			wall_start_y;
+	int			wall_end_y;
+	float		wall_h;
 	int			tex_x;
 	float		step_tex_y;
-	float		off_tex_y;
+	float		offset_tex_y;
 	float		shadow_factor;
 	bool		vertical_hit;
 	uint32_t	fov;
@@ -139,6 +141,8 @@ typedef struct s_textures
 	char	*south;
 	char	*west;
 	char	*east;
+	char	*floor;
+	char	*ceiling;
 	t_img	*imgs;
 }				t_textures;
 

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_file_data.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:44:55 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/21 03:04:17 by marvin           ###   ########.fr       */
+/*   Updated: 2025/03/21 20:20:03 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,13 @@ static void	__process_line(char *line, char *trimmed, t_data *data)
 	if (__is_texture_line(trimmed) == true)
 		process_texture_lines(trimmed, data->textures);
 	else if (trimmed[0] == 'F' || trimmed[0] == 'C')
-		process_color_lines(trimmed, data);
+	{
+		#if BONUS
+			process_bonus_texture_lines(trimmed, data->textures);
+		#else
+			process_color_lines(trimmed, data);
+		#endif
+	}
 	else if (data->feature_filled == 6 && __is_map_line(line))
 		fill_map2d_array(data->map, line);
 	else

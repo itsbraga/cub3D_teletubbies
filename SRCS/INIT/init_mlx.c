@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_mlx.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:07:04 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/20 23:40:14 by marvin           ###   ########.fr       */
+/*   Updated: 2025/03/21 19:14:11 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,15 +39,20 @@ void	init_mlx(t_mlx *mlx, t_game *game)
 	if (mlx->mlx_ptr == NULL)
 	{
 		free_mlx(mlx); // ou clean
-		return (err_msg("minilibX", ERR_MLX));
+		err_msg("minilibX", ERR_MLX);
+		return ;
 	}
 	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WIN_WIDTH, WIN_HEIGHT, W_NAME);
 	if (mlx->win_ptr == NULL)
 	{
 		free_mlx(mlx);
-		return (err_msg("minilibX", ERR_WIN));
+		err_msg("minilibX", ERR_WIN);
+		return ;
 	}
 	if (__init_mlx_img(mlx) == FAILURE)
-		return (err_msg("minilibX", ERR_INIT_IMG));
+	{
+		err_msg("minilibX", ERR_INIT_IMG);
+		return ;
+	}
 	game->mlx = mlx;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_xpm.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 21:26:18 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/21 03:40:19 by marvin           ###   ########.fr       */
+/*   Updated: 2025/03/21 20:02:54 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	__check_open_error(const char *arg)
 		err_msg(NULL, strerror(errno));
 }
 
-static int	__check_xpm_file(char *arg)
+int	check_xpm_file(char *arg)
 {
 	int	fd;
 
@@ -67,18 +67,5 @@ static int	__check_xpm_file(char *arg)
 		return (FAILURE);
 	}
 	close(fd);
-	return (SUCCESS);
-}
-
-int	check_textures_paths(t_textures *tex)
-{
-	if (__check_xpm_file(tex->north) == FAILURE)
-		return (FAILURE);
-	if (__check_xpm_file(tex->south) == FAILURE)
-		return (FAILURE);
-	if (__check_xpm_file(tex->west) == FAILURE)
-		return (FAILURE);
-	if (__check_xpm_file(tex->east) == FAILURE)
-		return (FAILURE);
 	return (SUCCESS);
 }

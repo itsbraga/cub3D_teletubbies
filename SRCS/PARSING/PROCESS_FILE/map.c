@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   map.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:42:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/21 02:49:35 by marvin           ###   ########.fr       */
+/*   Updated: 2025/03/21 19:35:51 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static char	*__normalize_line_for_storage(char *line, size_t width)
 	return (normed_line);
 }
 
-char	**normalize_map(char **map, size_t height, size_t width)
+char	**normalize_final_map(char **map, size_t height, size_t width)
 {
 	char	**normed;
 	size_t	i;

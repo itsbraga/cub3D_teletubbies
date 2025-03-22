@@ -49,6 +49,6 @@ void		raycasting_2d(t_data *d, t_player *player, t_raycasting *r,
 	float scale);
 
 // render_2d.c
-int		render_2d(t_game *game);
+int			render_2d(t_game *game);
 
 #endif

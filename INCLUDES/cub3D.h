@@ -3,15 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/21 04:03:41 by marvin           ###   ########.fr       */
+/*   Updated: 2025/03/22 00:40:29 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
+
+// # include "cub3D_bonus.h"
 
 /**********************\
  *	LIBRARIES
@@ -38,6 +40,27 @@
 # include "debug.h"
 
 /**********************\
+ *	INIT
+\**********************/
+
+// singletons.c
+t_data		*s_data(void);
+t_game		*s_game(void);
+t_mlx		*s_mlx(void);
+
+// init_mlx.c
+void		init_mlx(t_mlx *mlx, t_game *game);
+
+// init_textures.c
+void		init_textures(t_textures *tex, t_data *data);
+void		fill_textures_paths(char *line, t_textures *tex);
+void		fill_bonus_textures_paths(char *line, t_textures *tex);
+
+// init_structs.c
+void		init_map(t_map *map, char *path_to_file, int fd, t_data *data);
+void		init_structs(t_data *data, t_game *game, t_mlx *mlx);
+
+/**********************\
  *	PARSING
 \**********************/
 
@@ -50,7 +73,11 @@ uint32_t	convert_rgb_into_uint(char *red, char *green, char *blue);
 int			check_cub_file(char *arg);
 
 // CHECKS/check_xpm.c
+int			check_xpm_file(char *arg);
+
+// CHECKS/check_tex_path.c
 int			check_textures_paths(t_textures *tex);
+int			check_bonus_textures_paths(t_textures *tex);
 
 // CHECKS/check_map.c
 bool		flood_fill(char **map, int y, int x, size_t height, size_t width);
@@ -60,14 +87,14 @@ char		**normalize_map_for_flood(char **map, size_t height, size_t width);
 void		get_player_direction(t_map *map, t_player *player);
 
 // PROCESS_FILE/textures.c
-int			check_textures_paths(t_textures *tex);
 void		process_texture_lines(char *line, t_textures *tex);
+void		process_bonus_texture_lines(char *line, t_textures *tex);
 
 // PROCESS_FILE/rgb.c
 void		process_color_lines(char *line, t_data *data);
 
 // PROCESS_FILE/map.c
-char		**normalize_map(char **map, size_t height, size_t width);
+char		**normalize_final_map(char **map, size_t height, size_t width);
 void		fill_map2d_array(t_map *map, char *line);
 
 // PROCESS_FILE/get_file_data.c
@@ -91,6 +118,9 @@ void		my_free(void **to_free);
 // draw_utils.c
 void		swap_point(t_point *p0, t_point *p1);
 bool		is_valid_point(t_point point, size_t win_width, size_t win_height);
+
+// draw_line.c
+void		draw_line(t_img *img, t_point p0, t_point p1, int color);
 
 // formulas.c
 float		degree_to_radian(int degree);
@@ -130,27 +160,21 @@ int			free_gc_array(t_gc_lst **y, char **array);
 void		*yama(int flag, void *ptr, size_t size);
 
 /**********************\
- *	INIT
+ *	TITLE_SCREEN
 \**********************/
 
-// singletons.c
-t_data		*s_data(void);
-t_game		*s_game(void);
-t_mlx		*s_mlx(void);
+// title_screen_hooks.c
+int			set_title_screen_keys(int keycode, t_game *game);
+int			title_screen_mouse(int button, int x, int y, t_game *game);
 
-// init_mlx.c
-void		init_mlx(t_mlx *mlx, t_game *game);
+// layers.c
+void		background(t_title_screen *s);
+void		start_button(t_title_screen *s);
+void		controls_menu(t_title_screen *s);
 
-// init_textures.c
-void		init_textures(t_textures *tex, t_data *data);
-void		fill_textures_paths(char *line, t_textures *tex);
-
-// init_minimap.c
-void		init_minimap(t_minimap *mmap, t_game *game);
-
-// init_structs.c
-void		init_map(t_map *map, char *path_to_file, int fd, t_data *data);
-void		init_structs(t_data *data, t_game *game, t_mlx *mlx);
+// init.c
+void		init_title_screen(t_title_screen *screen);
+void		draw_title_screen(t_game *game, t_mlx *mlx);
 
 /**********************\
  *	MLX_HOOKS
@@ -170,67 +194,66 @@ void		rotate_rightward(t_game *game);
 void		move_player(t_game *game, t_keys *key);
 void		reset_move(t_player *player);
 
-// collisions.c
-int			handle_collisions(t_data *data, t_player *player, t_point *new_ppos);
-
-// mouse.c
-int			title_screen_mouse(int button, int x, int y, t_game *game);
-int			mouse_motion(int x, int y, t_game *game);
-
-// additionnal_keys.c
-int			set_title_screen_keys(int keycode, t_game *game);
-int			set_minimap_zoom_factor(int keycode, t_game *game);
-
 // setter.c
-void		toggle_mouse_visibility(t_mlx *mlx, t_game_state state);
 void		set_hooks(t_mlx *mlx, t_game *game);
 
 /**********************\
  *	RENDER
 \**********************/
 
-// map_info.c
-void		get_map_info(t_map *m);
-
 // xpm_to_mlx_img.c
 t_img		xpm_to_mlx_img(char *relative_path);
-
-// TITLE_SCREEN/layers.c
-void		background(t_title_screen *s);
-void		start_button(t_title_screen *s);
-void		controls_menu(t_title_screen *s);
-
-// TITLE_SCREEN/init.c
-void		init_title_screen(t_title_screen *screen);
-void		draw_title_screen(t_game *game, t_mlx *mlx);
 
 // pixels.c
 void		my_pixel_put_to_img(t_img *img, int color, int x, int y);
 void		clear_img(t_img *img, size_t size_x, size_t size_y, int color);
 
-// draw_line.c
-void		draw_line(t_img *img, t_point p0, t_point p1, int color);
-
-// draw_texture.c
+// RAYCASTING/shadow.c
+float		calculate_shadow_factor(float distance);
 int			apply_shadow_factor(int color, float shadow_factor);
-void		draw_vline_texture(int start_y, int end_y, int *tex_buffer,
-	t_raycasting *r);
 
-// raycasting.c
+// RAYCASTING/tex_buffer.c
+void		load_tex_buffer(int orientation, int *tex_buffer);
+void		handle_tex_buffer(int *tex_buffer, float ray_rad, t_raycasting *r);
+void		handle_fc_tex_buffer(int orientation, int *tex_buffer);
+
+// draw_wall_tex.c
+void		draw_wall(float ray_rad, t_raycasting *r);
+
+// RAYCASTING/draw_fc_colors.c
+void		draw_floor_color(float wall_h, t_raycasting *r);
+void		draw_ceiling_color(float wall_h, t_raycasting *r);
+
+// RAYCASTING/draw_floor_tex.c
+void		draw_floor_texture(int *tex_buffer, t_raycasting *r);
+
+// RAYCASTING/draw_ceil_tex.c
+void		draw_ceiling_texture(float wall_h, int *tex_buffer, int curr_x);
+
+// RAYCASTING/raycasting.c
 void		raycasting(t_data *d, t_player *player, t_raycasting *r);
-
-// weapons.c
-void		init_weapon(t_weapon *w, t_data *data);
-void		get_weapons(t_weapon *w);
-void		draw_weapon(t_game *game, t_weapon *w);
-void		render_weapon(t_game *game, t_weapon *w);
 
 // render_frame.c
 int			render_frame(t_game *game);
 
+/*************************************************************\
+ *	BONUS
+\*************************************************************/
+
+/**********************\
+ *	COLLISIONS
+\**********************/
+
+// collisions.c
+int			handle_collisions(t_data *data, t_player *player,
+	t_point *new_ppos);
+
 /**********************\
  *	MINIMAP
 \**********************/
+
+// init.c
+void		init_minimap(t_minimap *mmap, t_game *game);
 
 // triangle_utils.c
 void		init_triangle(t_triangle *tr, t_point a, t_point b, t_point c);
@@ -241,7 +264,7 @@ void		draw_hline(t_minimap *mmap, t_triangle *tr, int start_y, int end_y,
 void		fill_triangle(t_minimap *mmap, t_point a, t_point b, t_point c,
 int color);
 
-// compute_n_draw_player.c
+// draw_player.c
 void		draw_player(t_minimap *mmap, t_player *player);
 
 // viewport.c
@@ -250,5 +273,16 @@ void		draw_player_in_viewport(t_game *game, t_minimap *mmap);
 
 // render_minimap.c
 void		render_minimap(t_game *game, t_minimap *mmap);
+
+// zoom_handler.c
+int			set_minimap_zoom_factor_keys(int keycode, t_game *game);
+
+/**********************\
+ *	MOUSE
+\**********************/
+
+// mouse_bonus.c
+void		toggle_mouse_visibility(t_mlx *mlx, t_game_state state);
+int			mouse_motion(int x, int y, t_game *game);
 
 #endif

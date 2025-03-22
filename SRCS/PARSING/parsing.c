@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:44:36 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/21 03:25:15 by marvin           ###   ########.fr       */
+/*   Updated: 2025/03/21 19:36:18 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ static void	__replace_by_final_map(t_data *data, size_t longest_line)
 {
 	char	**final_map;
 
-	final_map = normalize_map(data->map->map2d, data->map->height,
-	longest_line);
+	final_map = normalize_final_map(data->map->map2d, data->map->height,
+		longest_line);
 	secure_malloc(final_map, true);
 	free_array(data->map->map2d);
 	data->map->map2d = final_map;

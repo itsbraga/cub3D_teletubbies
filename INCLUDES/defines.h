@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/21 04:11:51 by marvin           ###   ########.fr       */
+/*   Updated: 2025/03/21 19:37:58 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,9 @@
  * ERROR
 \**************************/
 
-# define ERR "\033[1m\033[31mError\n\033[0m"
+# define ERR "Error\n"
 # define ERR_PREFIX "\033[1m\033[31mError: \033[0m"
-# define ERR_USAGE "Usage: ./cub3D <path/to/map.cub>"
-# define ERR_USAGE_B "Usage: ./cub3D_bonus <path/to/map.cub>"
+# define ERR_USAGE "usage: ./cub3D <path/to/map.cub>"
 
 // minilibX
 # define ERR_MLX "Cannot initialize minilibX"
@@ -154,6 +153,8 @@ typedef void	(*move_array)(t_game *game);
 # define SO 1
 # define WE 2
 # define EA 3
+# define F 4
+# define C 5
 
 /**************************\
  * PIXEL COLORS

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   move_array.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/24 21:01:29 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/21 04:47:16 by marvin           ###   ########.fr       */
+/*   Updated: 2025/03/21 19:18:21 by annabrag         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	__init_move_array(move_array *functions)
 	functions[6] = NULL;
 }
 
-static void	__bonus_player_moves(t_data *data, t_player *player)
+void	bonus_player_moves(t_data *data, t_player *player)
 {
 	t_point	new_ppos;
 
@@ -49,13 +49,12 @@ void	move_player(t_game *game, t_keys *key)
 			functions[i](game);
 		i++;
 	}
-	if (BONUS)
-		__bonus_player_moves(game->data, player);
-	else
-	{
+	#if BONUS
+		bonus_player_moves(game->data, player);
+	#else
 		player->pos.x = roundf(player->pos.x + player->move.x);
 		player->pos.y = roundf(player->pos.y + player->move.y);
-	}
+	#endif
 }
 
 void	reset_move(t_player *player)
