@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structs.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/21 23:54:29 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/27 19:42:48 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ typedef struct s_map
 {
 	char		*path_to_file;
 	int			fd;
-	char		**map2d;
+	char		**wmap;
 	size_t		height;
 	size_t		width;
 }				t_map;
@@ -116,7 +116,6 @@ typedef struct s_raycasting
 	t_point		v_ray_inter;
 	t_point		h_offset;
 	t_point		v_offset;
-	uint32_t	curr_ray;
 	float		dist_wall;
 	int			wall_start_y;
 	int			wall_end_y;
@@ -126,14 +125,28 @@ typedef struct s_raycasting
 	float		offset_tex_y;
 	float		shadow_factor;
 	bool		vertical_hit;
-	uint32_t	fov;
 	float		player_rad;
+	uint32_t	fov;
+	uint32_t	curr_ray;
+	float		ray_cos;
+	float		ray_sin;
+	float		fixed_angle_cos;
 }				t_raycasting;
 
 typedef	struct s_keys_event
 {
 	bool	key_array[6];
 }				t_keys;
+
+typedef struct s_fc_core
+{
+	int		curr_y;
+	float	dy;
+	float	row_dist;
+	int		tex_x;
+	int		tex_y;
+	int		color;
+}				t_fc_core;
 
 typedef struct s_textures
 {
@@ -159,23 +172,23 @@ typedef struct s_data
 
 typedef struct s_viewport
 {
-	float	scale_x; // zoom factor
+	float	scale_x;			// zoom factor
 	float	scale_y;
-	int		pixel_width; // window width
+	int		pixel_width;		// window width
 	int		pixel_height;
-	int		offset_x; // offset to center the map
+	int		offset_x;			// offset to center the map
 	int		offset_y;
-	int		player_tile_x; // player coordinates on minimap
+	int		player_tile_x;		// player coordinates on minimap
 	int		player_tile_y;
-	int		perimeter; // visible area on minimap
-	int		start_x; // starting coordinates of visible area
+	int		perimeter;			// visible area on minimap
+	int		start_x;			// starting coordinates of visible area
 	int		start_y;
-	int		end_x; // ending coordinates of visible area
+	int		end_x;				// ending coordinates of visible area
 	int		end_y;
-	int		zone_width; // width of visible area
+	int		zone_width;			// width of visible area
 	int		zone_height;
-	float	rotation_angle; // minimap rotation angle
-	float	zoom_factor; // minimap zoom factor
+	float	rotation_angle;		// minimap rotation angle
+	float	zoom_factor;		// minimap zoom factor
 }				t_viewport;
 
 typedef struct s_trigo

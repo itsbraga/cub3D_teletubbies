@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render.c                                           :+:      :+:    :+:   */
+/*   render_minimap.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 20:39:37 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/21 19:07:11 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/27 14:26:19 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static void	__draw_visible_tiles(t_minimap *mmap, t_map *map)
 		{
 			if (x >= 0 && y >= 0 && x < (int)map->width && y < (int)map->height)
 			{
-				if (map->map2d[y][x] == '1')
+				if (map->wmap[y][x] == '1')
 				{
 					tile_in_viewport.x = x - (center_x - mmap->vp.perimeter);
 					tile_in_viewport.y = y - (center_y - mmap->vp.perimeter);

@@ -3,17 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   cub3D.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/22 00:40:29 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/27 19:09:33 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CUB3D_H
 # define CUB3D_H
-
-// # include "cub3D_bonus.h"
 
 /**********************\
  *	LIBRARIES
@@ -66,7 +64,7 @@ void		init_structs(t_data *data, t_game *game, t_mlx *mlx);
 
 // utils.c
 bool		is_empty_line(char *line);
-size_t		get_longest_line(char **map2d, size_t height);
+size_t		get_longest_line(char **wmap, size_t height);
 uint32_t	convert_rgb_into_uint(char *red, char *green, char *blue);
 
 // CHECKS/check_arg.c
@@ -214,21 +212,20 @@ int			apply_shadow_factor(int color, float shadow_factor);
 
 // RAYCASTING/tex_buffer.c
 void		load_tex_buffer(int orientation, int *tex_buffer);
-void		handle_tex_buffer(int *tex_buffer, float ray_rad, t_raycasting *r);
+void		handle_tex_buffer(int *tex_buffer, t_raycasting *r, float ray_rad);
 void		handle_fc_tex_buffer(int orientation, int *tex_buffer);
 
 // draw_wall_tex.c
-void		draw_wall(float ray_rad, t_raycasting *r);
+void		draw_wall(t_raycasting *r, float ray_rad);
 
 // RAYCASTING/draw_fc_colors.c
-void		draw_floor_color(float wall_h, t_raycasting *r);
-void		draw_ceiling_color(float wall_h, t_raycasting *r);
+void		draw_floor_color(t_raycasting *r, t_data *d);
+void		draw_ceiling_color(t_raycasting *r, t_data *d);
 
-// RAYCASTING/draw_floor_tex.c
-void		draw_floor_texture(int *tex_buffer, t_raycasting *r);
-
-// RAYCASTING/draw_ceil_tex.c
-void		draw_ceiling_texture(float wall_h, int *tex_buffer, int curr_x);
+// RAYCASTING/draw_fc_tex.c
+void		fc_precalculations(t_raycasting *r, float ray_rad);
+void 		draw_floor_texture(t_raycasting *r);
+void		draw_ceiling_texture(t_raycasting *r);
 
 // RAYCASTING/raycasting.c
 void		raycasting(t_data *d, t_player *player, t_raycasting *r);

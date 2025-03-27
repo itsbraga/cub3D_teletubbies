@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/21 23:55:34 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/27 19:35:24 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	inter_hline(t_data *d, t_player *player, t_raycasting *r, float ray_rad)
 	else if (ray_rad > PI)
 	{
 		r->h_ray_inter.y = floor(player->pos.y / TILE_SIZE) * TILE_SIZE - 0.0001;
-		r->h_ray_inter.x =  player->pos.x + (player->pos.y - r->h_ray_inter.y)
+		r->h_ray_inter.x = player->pos.x + (player->pos.y - r->h_ray_inter.y)
 				* inv_tan;
 		r->h_offset.y = -TILE_SIZE;
 		r->h_offset.x = -(r->h_offset.y) * inv_tan;
@@ -53,7 +53,7 @@ void	inter_hline(t_data *d, t_player *player, t_raycasting *r, float ray_rad)
 		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->width
 			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->height)
 			break;
-		else if (d->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '1')
+		else if (d->map->wmap[(int)curr_tile.y][(int)curr_tile.x] == '1')
 		{
 			// printf("HIT A WALL !\n");
 			break;
@@ -106,7 +106,7 @@ void	inter_vline(t_data *d, t_player *player, t_raycasting *r, float ray_rad)
 		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->width
 			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->height)
 			break;
-		else if (d->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '1')
+		else if (d->map->wmap[(int)curr_tile.y][(int)curr_tile.x] == '1')
 		{
 			// printf("HIT A WALL\n");
 			break;
@@ -154,6 +154,8 @@ t_point *closest_inter)
 	}
 }
 
+// One ray == one x
+// With ray_rad, we start with the leftmost ray
 void	raycasting(t_data *d, t_player *player, t_raycasting *r)
 {
 	t_point	closest_inter;
@@ -161,15 +163,22 @@ void	raycasting(t_data *d, t_player *player, t_raycasting *r)
 
 	r->curr_ray = 0;
 	r->player_rad = degree_to_radian(player->dir);
-	// on part du rayon le plus a gauche
 	ray_rad = norm_rad_angle(r->player_rad - (degree_to_radian(r->fov) / 2));
 	while (r->curr_ray < WIN_WIDTH)
 	{
 		inter_hline(d, player, r, ray_rad);
 		inter_vline(d, player, r, ray_rad);
 		find_closest_inter(player, r, &closest_inter);
-		draw_wall(ray_rad, r);
-		ray_rad += (degree_to_radian(r->fov) / WIN_WIDTH); // reglage FISHEYE
+		draw_wall(r, ray_rad);
+		#if BONUS
+			fc_precalculations(r, ray_rad);
+			draw_floor_texture(r);
+			draw_ceiling_texture(r);
+		#else
+			draw_floor_color(r, d);
+			draw_ceiling_color(r, d);
+		#endif
+		ray_rad += (degree_to_radian(r->fov) / WIN_WIDTH);
 		ray_rad = norm_rad_angle(ray_rad);
 		r->curr_ray++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:30:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/21 19:36:52 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/27 19:11:31 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	print_map_debug(t_map *map, const char *name)
 		s_game()->player->pos.x, s_game()->player->pos.y);
 	while (i < map->height)
 	{
-		printf("%s\n", map->map2d[i]);
+		printf("%s\n", map->wmap[i]);
 		i++;
 	}
 }
@@ -51,7 +51,6 @@ int	main(int argc, char **argv)
 	}
 	print_map_debug(data->map, argv[1]);
 	set_hooks(mlx, game);
-	// mlx_loop_hook(mlx->mlx_ptr, &render_2d, game);
 	mlx_loop_hook(mlx->mlx_ptr, &render_frame, game);
 	mlx_loop(mlx->mlx_ptr);
 }

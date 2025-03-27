@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tex_buffer.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 00:16:54 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/22 02:01:29 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/27 18:57:50 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	load_tex_buffer(int orientation, int *tex_buffer)
 	}
 }
 
-void	handle_tex_buffer(int *tex_buffer, float ray_rad, t_raycasting *r)
+void	handle_tex_buffer(int *tex_buffer, t_raycasting *r, float ray_rad)
 {
 	ft_bzero(tex_buffer, TILE_SIZE * TILE_SIZE);
 	if (r->vertical_hit == false)

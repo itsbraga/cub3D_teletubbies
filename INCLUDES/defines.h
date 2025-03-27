@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   defines.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/21 19:37:58 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/27 19:14:14 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,11 @@
 # define TILE_SIZE 64
 # define FOV 45
 # define PROJ_DISTANCE ((WIN_WIDTH / 2) / tan(degree_to_radian(FOV) / 2))
+#if BONUS
+# define MOVE_SPEED 8
+#else
 # define MOVE_SPEED 3
+#endif
 # define ROTATION_SPEED 2
 # define VISIBILITY_DIST_MAX 450
 

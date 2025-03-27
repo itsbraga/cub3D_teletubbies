@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   collisions.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:36:16 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/21 19:05:12 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/27 14:26:17 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	__check_wall_collision(t_data *data, int cell_x, int cell_y)
 	if ((cell_x >= 0 && cell_x < (int)data->map->width)
 		&& (cell_y >= 0 && cell_y < (int)data->map->height))
 	{
-		if (data->map->map2d[cell_y][cell_x] == '1')
+		if (data->map->wmap[cell_y][cell_x] == '1')
 		{
 			printf(BOLD RED "/!\\ Collision detected /!\\\n" RESET);
 			return (FAILURE);
