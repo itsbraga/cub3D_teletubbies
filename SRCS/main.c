@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:30:00 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/27 19:11:31 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/27 23:08:50 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	print_map_debug(t_map *map, const char *name)
 		s_game()->player->pos.x, s_game()->player->pos.y);
 	while (i < map->height)
 	{
-		printf("%s\n", map->wmap[i]);
+		printf("%s\n", map->map2d[i]);
 		i++;
 	}
 }

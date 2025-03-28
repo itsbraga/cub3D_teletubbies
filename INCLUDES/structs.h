@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:31:53 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/27 19:42:48 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/28 00:43:40 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ typedef struct s_map
 {
 	char		*path_to_file;
 	int			fd;
-	char		**wmap;
+	char		**map2d;
 	size_t		height;
 	size_t		width;
 }				t_map;
@@ -125,6 +125,7 @@ typedef struct s_raycasting
 	float		offset_tex_y;
 	float		shadow_factor;
 	bool		vertical_hit;
+	bool		is_door;
 	float		player_rad;
 	uint32_t	fov;
 	uint32_t	curr_ray;
@@ -156,6 +157,7 @@ typedef struct s_textures
 	char	*east;
 	char	*floor;
 	char	*ceiling;
+	char	*door;
 	t_img	*imgs;
 }				t_textures;
 
@@ -206,12 +208,12 @@ typedef struct s_triangle
 	t_point		a;
 	t_point		b;
 	t_point		c;
-	float		theta; // line angle
-	double		slope1; // line slope (= pente)
+	float		theta;			// line angle
+	double		slope1;			// line slope (= pente)
 	double		slope2;
 	double		slope3;
-	double		curr_x1; // coordinates of point 1
-	double		curr_x2; // coordinates of point 2
+	double		curr_x1;		// coordinates of point 1
+	double		curr_x2;		// coordinates of point 2
 	double		curr_slope1;
 	double		curr_slope2;
 	t_trigo		trig;
@@ -220,13 +222,14 @@ typedef struct s_triangle
 typedef struct s_minimap
 {
 	t_viewport	vp;
-	t_img		img; // shown on screen
-	t_img		cache; // cached image
+	t_img		img;			// shown on screen
+	t_img		cache;			// cached image
 	t_point		pos;
 	float		ratio;
 	int			width;
 	int			height;
 	size_t		tile_size;
+	int			color;
 }				t_minimap;
 
 typedef struct s_game

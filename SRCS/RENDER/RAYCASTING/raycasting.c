@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 23:48:06 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/27 19:35:24 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/27 23:35:39 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,11 @@ void	inter_hline(t_data *d, t_player *player, t_raycasting *r, float ray_rad)
 		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->width
 			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->height)
 			break;
-		else if (d->map->wmap[(int)curr_tile.y][(int)curr_tile.x] == '1')
+		else if (d->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '1'
+				|| d->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '2')
 		{
 			// printf("HIT A WALL !\n");
+			// printf("or a door\n");
 			break;
 		}
 		else
@@ -106,9 +108,11 @@ void	inter_vline(t_data *d, t_player *player, t_raycasting *r, float ray_rad)
 		if ((int)curr_tile.x < 0 || (size_t)curr_tile.x >= d->map->width
 			|| (int)curr_tile.y < 0 || (size_t)curr_tile.y >= d->map->height)
 			break;
-		else if (d->map->wmap[(int)curr_tile.y][(int)curr_tile.x] == '1')
+		else if (d->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '1'
+				|| d->map->map2d[(int)curr_tile.y][(int)curr_tile.x] == '2')
 		{
 			// printf("HIT A WALL\n");
+			// printf("or a door\n");
 			break;
 		}
 		else
@@ -138,19 +142,19 @@ t_point *closest_inter)
 	dist_v = (delta_xv * delta_xv) + (delta_yv * delta_yv);
 	if (dist_h < dist_v)
 	{
-		closest_inter->x = r->h_ray_inter.x;
-		closest_inter->y = r->h_ray_inter.y;
+		*closest_inter = r->h_ray_inter;
 		r->dist_wall = sqrt(dist_h);
 		r->tex_x = (int)closest_inter->x & (TILE_SIZE - 1);
 		r->vertical_hit = false;
+		r->is_door = is_door(s_data(), &r->h_ray_inter);
 	}
 	else
 	{
-		closest_inter->x = r->v_ray_inter.x;
-		closest_inter->y = r->v_ray_inter.y;
+		*closest_inter = r->v_ray_inter;
 		r->dist_wall = sqrt(dist_v);
 		r->tex_x = (int)closest_inter->y & (TILE_SIZE - 1);
 		r->vertical_hit = true;
+		r->is_door = is_door(s_data(), &r->v_ray_inter);
 	}
 }
 

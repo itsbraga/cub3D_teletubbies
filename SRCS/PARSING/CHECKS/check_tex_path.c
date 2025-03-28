@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_tex_path.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 20:26:40 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/21 20:02:12 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/27 22:51:35 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	check_bonus_textures_paths(t_textures *tex)
 	if (check_xpm_file(tex->floor) == FAILURE)
 		return (FAILURE);
 	if (check_xpm_file(tex->ceiling) == FAILURE)
+		return (FAILURE);
+	if (check_xpm_file(tex->door) == FAILURE)
 		return (FAILURE);
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 17:08:40 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/27 19:09:33 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/28 00:59:07 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void		init_structs(t_data *data, t_game *game, t_mlx *mlx);
 
 // utils.c
 bool		is_empty_line(char *line);
-size_t		get_longest_line(char **wmap, size_t height);
+size_t		get_longest_line(char **map2d, size_t height);
 uint32_t	convert_rgb_into_uint(char *red, char *green, char *blue);
 
 // CHECKS/check_arg.c
@@ -83,6 +83,12 @@ char		**normalize_map_for_flood(char **map, size_t height, size_t width);
 
 // CHECKS/check_player.c
 void		get_player_direction(t_map *map, t_player *player);
+
+// PROCESS_FILE/utils.c
+char		*skip_spaces(char *line);
+bool		is_wall_texture_line(char *trimmed);
+bool		is_map_line(char *line);
+bool		is_bonus_map_line(char *line);
 
 // PROCESS_FILE/textures.c
 void		process_texture_lines(char *line, t_textures *tex);
@@ -116,6 +122,12 @@ void		my_free(void **to_free);
 // draw_utils.c
 void		swap_point(t_point *p0, t_point *p1);
 bool		is_valid_point(t_point point, size_t win_width, size_t win_height);
+bool		is_within_map_bounds(int x, int y, t_map *map);
+bool		is_door(t_data *data, t_point *p);
+
+// minimap.c
+int			set_mmap_tile_color(char c);
+void		draw_minimap_frame(t_minimap *mmap);
 
 // draw_line.c
 void		draw_line(t_img *img, t_point p0, t_point p1, int color);

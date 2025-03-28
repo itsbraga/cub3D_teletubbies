@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 13:42:25 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/27 14:26:41 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/27 23:08:50 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,13 +83,13 @@ void	fill_map2d_array(t_map *map, char *line)
 	i = 0;
 	while (i < map->height)
 	{
-		tmp[i] = map->wmap[i];
+		tmp[i] = map->map2d[i];
 		i++;
 	}
 	tmp[map->height] = ft_strdup(line);
 	secure_malloc(tmp[map->height], true);
 	tmp[map->height + 1] = NULL;
-	free(map->wmap);
-	map->wmap = tmp;
+	free(map->map2d);
+	map->map2d = tmp;
 	map->height++;
 }

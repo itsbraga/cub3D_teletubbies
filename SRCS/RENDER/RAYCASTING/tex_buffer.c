@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 00:16:54 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/27 18:57:50 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/27 23:44:07 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,11 @@ void	load_tex_buffer(int orientation, int *tex_buffer)
 void	handle_tex_buffer(int *tex_buffer, t_raycasting *r, float ray_rad)
 {
 	ft_bzero(tex_buffer, TILE_SIZE * TILE_SIZE);
+	if (r->is_door == true)
+	{
+		load_tex_buffer(D, tex_buffer);
+		return ;
+	}
 	if (r->vertical_hit == false)
 	{
 		if (ray_rad > 0 && ray_rad < PI)
@@ -46,7 +51,7 @@ void	handle_tex_buffer(int *tex_buffer, t_raycasting *r, float ray_rad)
 		else if (ray_rad > PI2 && ray_rad < (2 * PI))
 			load_tex_buffer(NO, tex_buffer);
 	}
-	else if (r->vertical_hit == true)
+	else
 	{
 		if (ray_rad > PI2 && ray_rad < PI3)
 			load_tex_buffer(WE, tex_buffer);

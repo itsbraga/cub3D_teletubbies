@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/28 21:09:30 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/27 14:26:49 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/27 23:08:50 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	free_map(t_map *map)
 {
-	if (map->wmap != NULL)
-		free_array(map->wmap);
+	if (map->map2d != NULL)
+		free_array(map->map2d);
 	if (map->path_to_file != NULL)
 		my_free((void **)map->path_to_file);
 }

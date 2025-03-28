@@ -46,7 +46,7 @@ void	process_texture_lines(char *line, t_textures *tex)
 
 static bool	__has_all_bonus_textures(t_textures *tex)
 {
-	return (tex->floor && tex->ceiling);
+	return (tex->floor && tex->ceiling && tex->door);
 }
 
 void	process_bonus_texture_lines(char *line, t_textures *tex)
@@ -55,13 +55,16 @@ void	process_bonus_texture_lines(char *line, t_textures *tex)
 	if (line[0] == 'F')
 	{
 		tex->imgs[F] = xpm_to_mlx_img(tex->floor);
-		printf("tex->imgs[F] img_ptr: %p\n", tex->imgs[F].img_ptr);
 		s_data()->feature_filled++;
 	}
-	else
+	else if (line[0] == 'C')
 	{
 		tex->imgs[C] = xpm_to_mlx_img(tex->ceiling);
-		printf("tex->imgs[C] img_ptr: %p\n", tex->imgs[C].img_ptr);
+		s_data()->feature_filled++;
+	}
+	else if (line[0] == 'D')
+	{
+		tex->imgs[D] = xpm_to_mlx_img(tex->door);
 		s_data()->feature_filled++;
 	}
 	if (__has_all_bonus_textures(tex) == true

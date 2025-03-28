@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:44:36 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/27 14:26:31 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/27 23:08:50 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static bool	__process_map_data(t_map *map, t_data *data, char *arg, int fd)
 	init_map(map, arg, fd, data);
 	get_file_data(fd, data);
 	close(fd);
-	if (map->wmap == NULL || map->height == 0)
+	if (map->map2d == NULL || map->height == 0)
 		return (false);
 	return (true);
 }
@@ -41,11 +41,11 @@ static void	__replace_by_final_map(t_data *data, size_t longest_line)
 {
 	char	**final_map;
 
-	final_map = normalize_final_map(data->map->wmap, data->map->height,
+	final_map = normalize_final_map(data->map->map2d, data->map->height,
 		longest_line);
 	secure_malloc(final_map, true);
-	free_array(data->map->wmap);
-	data->map->wmap = final_map;
+	free_array(data->map->map2d);
+	data->map->map2d = final_map;
 	data->map->width = longest_line;
 }
 
@@ -60,8 +60,8 @@ int	parsing(char *arg, t_data *data, t_game *game)
 	map = data->map;
 	if (__process_map_data(map, data, arg, fd) == false)
 		return (FAILURE);
-	longest_line = get_longest_line(map->wmap, map->height);
-	flood_map = normalize_map_for_flood(map->wmap, map->height, longest_line);
+	longest_line = get_longest_line(map->map2d, map->height);
+	flood_map = normalize_map_for_flood(map->map2d, map->height, longest_line);
 	secure_malloc(flood_map, true);
 	if (__validate_map(flood_map, map->height, longest_line,
 		game->player) == false)

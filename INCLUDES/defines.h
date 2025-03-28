@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 18:22:46 by pmateo            #+#    #+#             */
-/*   Updated: 2025/03/27 19:14:14 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/28 01:03:33 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 #ifndef BONUS
 # define BONUS 1
 #endif
+
+# define VALID_MAP "01 NSEW"
+# define VALID_BONUS_MAP "012 NSEW"
 
 /**************************\
  * MATHS
@@ -98,7 +101,7 @@
  * MLX
 \**************************/
 
-# define W_NAME "TeleCubbies3D - by @itsbraga and @k0xdama"
+# define W_NAME "TeleCubbies3D - by @k0xdama and @itsbraga"
 # define WIN_WIDTH 1024 // 1280
 # define WIN_HEIGHT 1024 // 720
 
@@ -108,6 +111,8 @@
 /**************************\
  * PLAYER MOVEMENTS
 \**************************/
+
+# define COLLISION_WARN "/!\\ Collision detected /!\\\n"
 
 // Array of pointers to functions
 typedef void	(*move_array)(t_game *game);
@@ -159,6 +164,7 @@ typedef void	(*move_array)(t_game *game);
 # define EA 3
 # define F 4
 # define C 5
+# define D 6
 
 /**************************\
  * PIXEL COLORS
@@ -168,6 +174,7 @@ typedef void	(*move_array)(t_game *game);
 # define YELLOW_PIX 0x00FFFF00
 # define WHITE_PIX 0x00FFFFFF
 # define BLACK_PIX 0xFF000000
+# define MANDARINE_PIX 0x00FEA347
 # define LAVENDER_PIX 0x009683EC
 # define LPINK_PIX 0x00FFB6C1
 # define ROY_PURPLE_PIX 0x005A006C

@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 13:43:21 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/27 14:26:38 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/27 23:08:50 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ static bool	__is_valid_player_pos(t_map *map, t_point pos)
 {
 	if (pos.x < 0 || pos.y < 0 || (size_t)pos.y >= map->height
 		|| (size_t)pos.x >= map->width
-		|| map->wmap[(int)pos.y][(int)pos.x] == '1'
-		|| map->wmap[(int)pos.y][(int)pos.x] == ' '
-		|| map->wmap[(int)pos.y][(int)pos.x] == '\t')
+		|| map->map2d[(int)pos.y][(int)pos.x] == '1'
+		|| map->map2d[(int)pos.y][(int)pos.x] == ' '
+		|| map->map2d[(int)pos.y][(int)pos.x] == '\t')
 	{
 		err_msg(NULL, ERR_PLAYER_POS);
 		return (false);
@@ -75,7 +75,7 @@ void	get_player_direction(t_map *map, t_player *player)
 	i = 0;
 	while (i < map->height)
 	{
-		player_count += __find_player_in_line(map->wmap[i], player, i);
+		player_count += __find_player_in_line(map->map2d[i], player, i);
 		i++;
 	}
 	if (player_count == 0)

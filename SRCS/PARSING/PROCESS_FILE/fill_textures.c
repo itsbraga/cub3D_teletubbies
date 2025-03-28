@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fill_textures.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: annabrag <annabrag@student.42.fr>          +#+  +:+       +#+        */
+/*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/09 18:02:38 by art3mis           #+#    #+#             */
-/*   Updated: 2025/03/21 19:58:19 by annabrag         ###   ########.fr       */
+/*   Updated: 2025/03/28 00:31:30 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,11 +60,16 @@ void	fill_bonus_textures_paths(char *line, t_textures *tex)
 	if (line[0] == 'F' && tex->floor == NULL)
 	{
 		tex->floor = __get_texture_path(line);
-		printf(BOLD PB "FLOOR: " RESET "[%s]\n", tex->floor);
+		printf(BOLD PG "FLOOR: " RESET "[%s]\n", tex->floor);
 	}
 	else if (line[0] == 'C' && tex->ceiling == NULL)
 	{
 		tex->ceiling = __get_texture_path(line);
-		printf(BOLD PB "CEILING: " RESET "[%s]\n", tex->ceiling);
+		printf(BOLD PG "CEILING: " RESET "[%s]\n", tex->ceiling);
+	}
+	else if (line[0] == 'D' && tex->door == NULL)
+	{
+		tex->door = __get_texture_path(line);
+		printf(BOLD PY "DOOR: " RESET "[%s]\n", tex->door);
 	}
 }

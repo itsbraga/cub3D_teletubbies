@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/22 00:07:23 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/27 19:43:02 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/27 19:46:23 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	fc_precalculations(t_raycasting *r, float ray_rad)
 static void	__draw_floor_core(t_raycasting *r, t_fc_core *fc, int *tex_buffer)
 {
 	t_point	floor;
+	float	shadow_factor;
 	t_img	*img;
 
 	img = &s_mlx()->img;
@@ -35,11 +36,11 @@ static void	__draw_floor_core(t_raycasting *r, t_fc_core *fc, int *tex_buffer)
 	fc->row_dist /= r->fixed_angle_cos;
 	floor.x = s_game()->player->pos.x + fc->row_dist * r->ray_cos;
 	floor.y = s_game()->player->pos.y + fc->row_dist * r->ray_sin;
-	r->shadow_factor = calculate_shadow_factor(fc->row_dist);
+	shadow_factor = calculate_shadow_factor(fc->row_dist);
 	fc->tex_x = ((int)floor.x) & (TILE_SIZE - 1);
 	fc->tex_y = ((int)floor.y) & (TILE_SIZE - 1);
 	fc->color = tex_buffer[fc->tex_y * TILE_SIZE + fc->tex_x];
-	fc->color = apply_shadow_factor(fc->color, r->shadow_factor);
+	fc->color = apply_shadow_factor(fc->color, shadow_factor);
 	my_pixel_put_to_img(img, fc->color, r->curr_ray, fc->curr_y);
 }
 
@@ -61,6 +62,7 @@ void draw_floor_texture(t_raycasting *r)
 static void	__draw_ceiling_core(t_raycasting *r, t_fc_core *fc, int *tex_buffer)
 {
 	t_point ceiling;
+	float	shadow_factor;
 	t_img	*img;
 
 	img = &s_mlx()->img;
@@ -71,11 +73,11 @@ static void	__draw_ceiling_core(t_raycasting *r, t_fc_core *fc, int *tex_buffer)
 	fc->row_dist /= r->fixed_angle_cos;
 	ceiling.x = s_game()->player->pos.x + fc->row_dist * r->ray_cos;
 	ceiling.y = s_game()->player->pos.y + fc->row_dist * r->ray_sin;
-	r->shadow_factor = calculate_shadow_factor(fc->row_dist);
+	shadow_factor = calculate_shadow_factor(fc->row_dist);
 	fc->tex_x = ((int)ceiling.x) & (TILE_SIZE - 1);
 	fc->tex_y = ((int)ceiling.y) & (TILE_SIZE - 1);
 	fc->color = tex_buffer[fc->tex_y * TILE_SIZE + fc->tex_x];
-	fc->color = apply_shadow_factor(fc->color, r->shadow_factor);
+	fc->color = apply_shadow_factor(fc->color, shadow_factor);
 	my_pixel_put_to_img(img, fc->color, r->curr_ray, fc->curr_y);
 }
 

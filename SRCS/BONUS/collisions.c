@@ -6,24 +6,28 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 17:36:16 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/27 14:26:17 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/27 23:58:52 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3D.h"
 
-static int	__check_wall_collision(t_data *data, int cell_x, int cell_y)
+static bool	__collision_detected(t_data *data, int cell_x, int cell_y)
 {
-	if ((cell_x >= 0 && cell_x < (int)data->map->width)
-		&& (cell_y >= 0 && cell_y < (int)data->map->height))
+	if (cell_x < 0 || cell_x >= (int)data->map->width
+		|| cell_y < 0 || cell_y >= (int)data->map->height)
+		return (false);
+	if (data->map->map2d[cell_y][cell_x] == '1')
 	{
-		if (data->map->wmap[cell_y][cell_x] == '1')
-		{
-			printf(BOLD RED "/!\\ Collision detected /!\\\n" RESET);
-			return (FAILURE);
-		}
+		printf(BOLD "[WALL] " RED COLLISION_WARN RESET);
+		return (true);
 	}
-	return (SUCCESS);
+	else if (data->map->map2d[cell_y][cell_x] == '2')
+	{
+		printf(BOLD PY "[DOOR] " RED COLLISION_WARN RESET);
+		return (true);
+	}
+	return (false);
 }
 
 /*
@@ -50,7 +54,7 @@ int cell_y)
 	{
 		cell_x = (int)(corners[i].x / TILE_SIZE);
 		cell_y = (int)(corners[i].y / TILE_SIZE);
-		if (__check_wall_collision(data, cell_x, cell_y) == FAILURE)
+		if (__collision_detected(data, cell_x, cell_y) == true)
 			return (FAILURE);
 		i++;
 	}
@@ -66,7 +70,7 @@ int	handle_collisions(t_data *data, t_player *player, t_point *new_ppos)
 	new_ppos->y = player->pos.y + player->move.y;
 	cell_x = (int)(new_ppos->x / TILE_SIZE);
 	cell_y = (int)(new_ppos->y / TILE_SIZE);
-	if (__check_wall_collision(data, cell_x, cell_y) == FAILURE)
+	if (__collision_detected(data, cell_x, cell_y) == true)
 		return (FAILURE);
 	if (__check_corners(data, new_ppos, cell_x, cell_y) == FAILURE)
 		return (FAILURE);

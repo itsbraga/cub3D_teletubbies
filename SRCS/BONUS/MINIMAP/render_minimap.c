@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/17 20:39:37 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/27 14:26:19 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/28 01:05:30 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 	- The border is drawn in gray
 	- The inside of the tile is white
 */
-static void	__draw_tile(t_minimap *mmap, t_point tile)
+static void	__draw_tile(t_minimap *mmap, t_point tile, int color)
 {
 	t_point	pixel;
 	size_t	x_end;
@@ -41,7 +41,7 @@ static void	__draw_tile(t_minimap *mmap, t_point tile)
 				pixel.y == mmap->vp.offset_y + (tile.y * mmap->tile_size))
 				my_pixel_put_to_img(&mmap->img, GRAY_PIX, pixel.x, pixel.y);
 			else
-				my_pixel_put_to_img(&mmap->img, WHITE_PIX, pixel.x, pixel.y);
+				my_pixel_put_to_img(&mmap->img, color, pixel.x, pixel.y);
 			pixel.x++;
 		}
 		pixel.y++;
@@ -53,7 +53,7 @@ static void	__draw_tile(t_minimap *mmap, t_point tile)
 	The function:
 	- Centers the view on the player's position
 	- Checks a square area of (2 * perimeter + 1) tiles around the player
-	- Draws only walls ('1') that are within map boundaries
+	- Draws only walls ('1') or doors ('2') that are within map boundaries
 */
 static void	__draw_visible_tiles(t_minimap *mmap, t_map *map)
 {
@@ -71,44 +71,16 @@ static void	__draw_visible_tiles(t_minimap *mmap, t_map *map)
 		x = center_x - mmap->vp.perimeter - 1;
 		while (++x <= center_x + mmap->vp.perimeter)
 		{
-			if (x >= 0 && y >= 0 && x < (int)map->width && y < (int)map->height)
+			if (is_within_map_bounds(x, y, map) == false)
+				break;
+			if (map->map2d[y][x] == '1' || map->map2d[y][x] == '2')
 			{
-				if (map->wmap[y][x] == '1')
-				{
-					tile_in_viewport.x = x - (center_x - mmap->vp.perimeter);
-					tile_in_viewport.y = y - (center_y - mmap->vp.perimeter);
-					__draw_tile(mmap, tile_in_viewport);
-				}
+				mmap->color = set_mmap_tile_color(map->map2d[y][x]);
+				tile_in_viewport.x = x - (center_x - mmap->vp.perimeter);
+				tile_in_viewport.y = y - (center_y - mmap->vp.perimeter);
+				__draw_tile(mmap, tile_in_viewport, mmap->color);
 			}
 		}
-	}
-}
-
-/*
-	Draws a decorative frame around the minimap
-	- Has a thickness of 2 pixels
-	- Is drawn in x color
-	- Surrounds the entire minimap area
-*/
-static void	__draw_minimap_frame(t_minimap *mmap)
-{
-	int	x;
-	int	y;
-	int	thickness;
-
-	thickness = 2;
-	y = 0;
-	while (y < mmap->height)
-	{
-		x = 0;
-		while (x < mmap->width)
-		{
-			if (y < thickness || y >= mmap->height - thickness ||
-				x < thickness || x >= mmap->width - thickness)
-				my_pixel_put_to_img(&mmap->img, RED_PIX, x, y);
-			x++;
-		}
-		y++;
 	}
 }
 
@@ -117,7 +89,7 @@ static void	__draw_minimap(t_minimap *mmap, t_map *map)
 	mmap->vp = compute_viewport(mmap);
 	__draw_visible_tiles(mmap, map);
 	draw_player_in_viewport(s_game(), mmap);
-	__draw_minimap_frame(mmap);
+	draw_minimap_frame(mmap);
 }
 
 void	render_minimap(t_game *game, t_minimap *mmap)

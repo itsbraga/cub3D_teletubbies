@@ -6,7 +6,7 @@
 /*   By: art3mis <art3mis@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 00:10:05 by annabrag          #+#    #+#             */
-/*   Updated: 2025/03/27 14:26:20 by art3mis          ###   ########.fr       */
+/*   Updated: 2025/03/27 23:08:50 by art3mis          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static void	__draw_map2d(t_mlx *mlx, t_map *map, float scale)
 		tile.x = 0;
 		while (tile.x < map->width)
 		{
-			if (map->wmap[(int)tile.y][(int)tile.x] == '1')
+			if (map->map2d[(int)tile.y][(int)tile.x] == '1')
 				__draw_tile(mlx, tile, scale);
 			tile.x++;
 		}
